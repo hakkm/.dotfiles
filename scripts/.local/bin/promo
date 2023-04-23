@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# read -p "Enter work time (min): " work_time_min
+
+work_time_s=$(($1 * 60))
+sleep $work_time_s
+
+notify-send "Time's up!" "Your work time is over. $work_time_min min."
+
+sleep 10
+
+# systemctl suspend -i
+xdg-screensaver lock
+
+

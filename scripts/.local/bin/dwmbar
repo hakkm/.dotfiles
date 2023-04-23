@@ -1,0 +1,26 @@
+#!/bin/bash
+
+
+# to add something just echo the ouput at the order you want
+get_status() {
+  # volume
+  # dependencies: pamixer
+  echo [ 墳 $( pamixer --get-volume ) ]
+  # wifi
+  wifi_state=$(cat /sys/class/net/wlan0/operstate)
+  [[ $wifi_state == up ]] && echo "[ 󰖩 ]"
+
+  # battery
+  battery=`upower -i /org/freedesktop/UPower/devices/battery_BAT0 | awk '/percentage/ {print $2}' | tr -d %`
+  [[ $battery != 0 && $battery != " " ]] && echo "[  $battery % ]"
+
+  # date 
+  echo $( date +"[ (%a) %e %b | %I:%M ]" )
+}
+
+# Statusbar loop
+while true; do
+  xsetroot -name "$(get_status | tr "\n" " ")"
+  sleep 1m    # Update time every minute
+done &
+

@@ -1,0 +1,33 @@
+set statusbar-h-padding 0
+set statusbar-v-padding 0
+set page-padding 1
+set selection-clipboard clipboard
+# map
+map ] zoom in
+map [ zoom out 
+map i recolor 
+
+# Set the zoom step 
+set zoom-step 10
+
+# Set the maximum zoom
+set zoom-max 1000
+
+# Set the minimum zoom
+set zoom-min 10
+
+# En/Disables horizontally centered zooming.
+set zoom-center "false"
+
+# Display the page number in the window title.
+set window-title-page "false"
+
+set window-title-basename "false"
+
+set window-title-home-tilde "false"
+
+set statusbar-basename "false"
+
+set statusbar-home-tilde "false"
+
+
