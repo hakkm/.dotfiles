@@ -1,0 +1,11 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =9
+let g:netrw_dirhist_9='/home/khabir'
+let g:netrw_dirhist_8='/home/khabir/.local/share/Trash/files'
+let g:netrw_dirhist_7='/home/khabir/.local/share/Trash'
+let g:netrw_dirhist_6='/home/khabir/.local/share'
+let g:netrw_dirhist_5='/home/khabir/.local'
+let g:netrw_dirhist_4='/home/khabir'
+let g:netrw_dirhist_3='/home/khabir/Music'
+let g:netrw_dirhist_2='/home/khabir'
+let g:netrw_dirhist_1='/home/khabir/Documents'
