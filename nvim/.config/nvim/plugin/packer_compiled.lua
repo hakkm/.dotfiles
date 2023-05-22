@@ -149,6 +149,11 @@ _G.packer_plugins = {
     path = "/home/khabir/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim",
     url = "https://github.com/lukas-reineke/indent-blankline.nvim"
   },
+  ["lsp-zero.nvim"] = {
+    loaded = true,
+    path = "/home/khabir/.local/share/nvim/site/pack/packer/start/lsp-zero.nvim",
+    url = "https://github.com/VonHeikemen/lsp-zero.nvim"
+  },
   ["lualine.nvim"] = {
     loaded = true,
     path = "/home/khabir/.local/share/nvim/site/pack/packer/start/lualine.nvim",
@@ -168,11 +173,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/khabir/.local/share/nvim/site/pack/packer/start/mason.nvim",
     url = "https://github.com/williamboman/mason.nvim"
-  },
-  ["null-ls.nvim"] = {
-    loaded = true,
-    path = "/home/khabir/.local/share/nvim/site/pack/packer/start/null-ls.nvim",
-    url = "https://github.com/jose-elias-alvarez/null-ls.nvim"
   },
   ["nvim-autopairs"] = {
     loaded = true,
@@ -244,6 +244,11 @@ _G.packer_plugins = {
     path = "/home/khabir/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
     url = "https://github.com/folke/tokyonight.nvim"
   },
+  ["true-zen.nvim"] = {
+    loaded = true,
+    path = "/home/khabir/.local/share/nvim/site/pack/packer/start/true-zen.nvim",
+    url = "https://github.com/Pocco81/true-zen.nvim"
+  },
   ["vim-bbye"] = {
     loaded = true,
     path = "/home/khabir/.local/share/nvim/site/pack/packer/start/vim-bbye",
@@ -253,6 +258,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/khabir/.local/share/nvim/site/pack/packer/start/vim-illuminate",
     url = "https://github.com/RRethy/vim-illuminate"
+  },
+  vimtex = {
+    loaded = true,
+    path = "/home/khabir/.local/share/nvim/site/pack/packer/start/vimtex",
+    url = "https://github.com/lervag/vimtex"
   },
   ["which-key.nvim"] = {
     loaded = true,

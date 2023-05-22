@@ -2,10 +2,6 @@ set statusbar-h-padding 0
 set statusbar-v-padding 0
 set page-padding 1
 set selection-clipboard clipboard
-# map
-map ] zoom in
-map [ zoom out 
-map i recolor 
 
 # Set the zoom step 
 set zoom-step 10
@@ -30,4 +26,13 @@ set statusbar-basename "false"
 
 set statusbar-home-tilde "false"
 
+# set recolor   
+# set recolor-lightcolor \#222222
+# set recolor-keephue
+set default-bg \#1f2227
 
+# map
+map ] zoom in
+map [ zoom out 
+map i recolor 
+map b toggle_statusbar

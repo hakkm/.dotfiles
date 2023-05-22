@@ -4,9 +4,6 @@
 [ -f /etc/xprofile ] && . /etc/xprofile
 [[ -f ~/.xprofile ]] && . ~/.xprofile
 
-
-dwmbar &
-
 # testing you can deleted fine
 userresources=$HOME/.Xresources
 usermodmap=$HOME/.Xmodmap
@@ -49,6 +46,10 @@ fi
 # keyboard layout
 exec ~/bin/startdwm
 exec /usr/local/bin/dwm
+
+# for dwm : Bind the right Alt key to Mod4
+xmodmap -e "keycode 108 = Super_L"  # reassign Alt_R to Super_L
+xmodmap -e "remove mod1 = Super_L"  # make sure X keeps it out of the mod1 group
 
 
 

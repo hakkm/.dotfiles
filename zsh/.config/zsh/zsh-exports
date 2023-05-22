@@ -2,23 +2,26 @@
 
 HISTSIZE=1000000
 SAVEHIST=1000000
+HISTFILE="$ZDOTDIR/.zsh_history"
 
 export VISUAL=nvim
-HISTFILE="$XDG_DATA_HOME"/zsh/history
-
-# export PATH="$HOME/.local/bin":$PATH
-# export MANPAGER='nvim +Man!'
-# export MANWIDTH=999
+export EDITOR="nvim"
+export BROWSER="brave-nightly"
+export MANPAGER='nvim +Man!'
+export OPENER='zathura'
+export MANWIDTH=999
 
 
 # eval "$(zoxide init zsh)"
 
-# i know what i want
+# i know what i want while using pip 
 # don't use a lot of completion because it slow down your machine
 # eval "`pip completion --zsh`"           
 
 
+###################
 # Adding to PATH
+###################
 function add_to_path {
   if [[ ":$PATH:" != *":$1:"* ]]; then
     export PATH=$PATH:$1
@@ -28,8 +31,6 @@ function add_to_path {
 add_to_path /home/khabir/.local/bin
 #  for creating executable files in /home/khabir/bin
 add_to_path /home/khabir/bin
-# adding AppImages dir to PATH
-add_to_path ~/AppImages
 # bat, zathura, sxiv
 add_to_path /usr/bin/bat:/usr/bin/sxiv:/usr/bin/zathura
 # lua
@@ -44,7 +45,7 @@ function ranger {
     local ranger_cmd=(
         command
         ranger
-        --cmd="map Q chain shell echo %d > "$tempfile"; quitall"
+        --cmd="map w chain shell echo %d > "$tempfile"; quitall"
     )
     
     ${ranger_cmd[@]} "$@"
@@ -55,13 +56,11 @@ function ranger {
 }
 
 # lf : add lfcd command 
-LFCD="$GOPATH/src/github.com/gokcehan/lf/etc/lfcd.sh"  # source
-LFCD="/home/khabir/.config/lf/lfcd.sh"                                #  pre-built binary, make sure to use absolute path
-if [ -f "$LFCD" ]; then
-    source "$LFCD"
-fi
-
-# bindkey -s '^o' ':lfcd\n'
+# LFCD="$GOPATH/src/github.com/gokcehan/lf/etc/lfcd.sh"  # source
+# LFCD="/home/khabir/.config/lf/lfcd.sh"                                #  pre-built binary, make sure to use absolute path
+# if [ -f "$LFCD" ]; then
+    # source "$LFCD"
+# fi
 
 
 # output=$(sed -E 's/ +/=/; s/$/:\\/' < $HOME/.config/lf/icons_cust)

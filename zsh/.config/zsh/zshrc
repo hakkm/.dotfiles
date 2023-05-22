@@ -33,11 +33,14 @@ zsh_source_file "zsh-exports"
 zsh_source_file "zsh-vim-mode"
 zsh_source_file "zsh-aliases"
 zsh_source_file "zsh-prompt"
+zsh_source_file "zsh-keybindings"
 
 # Plugins
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
 zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
 zsh_add_plugin "zsh-users/zsh-history-substring-search"
+zsh_add_plugin "akash329d/zsh-alias-finder"
+zsh_add_plugin "sei40kr/zsh-fast-alias-tips"
 # zsh_add_completion "srijanshetty/zsh-pip-completion" false
 # zsh_add_completion "zsh-users/zsh-completions" false
 # zsh_add_completion "esc/conda-zsh-completion" false
@@ -47,8 +50,7 @@ zsh_add_plugin "zsh-users/zsh-history-substring-search"
 ################
 # Key-bindings #
 ################
-# bindkey -s '^o' 'lfcd\n'
-bindkey -s '^o' 'lfcd\n'
+bindkey -s '^o' 'ranger\n'
 bindkey -s '^f' 'zi\n'
 # bindkey -s '^s' 'ncdu\n'
 # bindkey -s '^v' 'nvim\n'
@@ -63,6 +65,9 @@ bindkey '^[[B' history-substring-search-down
 
 # zsh-autosuggestions
 bindkey '^ ' autosuggest-accept
+
+
+alias lll="ls -al"
 
 
 

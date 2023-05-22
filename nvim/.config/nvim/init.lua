@@ -1,6 +1,6 @@
+require "user.plugins"
 require "user.options"
 require "user.keymaps"
-require "user.plugins"
 require "user.colorscheme"
 require "user.cmp"
 require "user.lsp"
@@ -21,4 +21,6 @@ require "user.whichkey"
 require "user.autocommands"
 require "user.code-runner"
 -- require "user.peek" -- markdown preview
--- require "user.markdown-preview"
+require "user.markdown-preview"
+require "user.true-zen" -- for zen mode
+require "user.vimtex"

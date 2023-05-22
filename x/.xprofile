@@ -20,7 +20,13 @@ add_to_path /usr/bin/lua
 
 # fix notification last for ever when running notify-send in .xprofile
 export 	EDITOR="nvim"
+export BROWSER="brave-nightly"
 export ZDOTDIR=$HOME/.config/zsh
 
 setbg $HOME/pics/wallpapers        # set background
-dwmbar &                           # Statusbar loop
+slstatus &
+sxhkd &                         # for keybindings
+
+# for dwm : Bind the right Alt key to Mod4
+xmodmap -e "keycode 108 = Super_L"  # reassign Alt_R to Super_L
+xmodmap -e "remove mod1 = Super_L"  # make sure X keeps it out of the mod1 group
