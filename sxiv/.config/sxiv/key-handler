@@ -54,3 +54,16 @@ do
   esac
 done
 
+# zoom in and zoom out with ][
+case "$1" in
+  '[')
+    sxiv -z -0.1
+    ;;
+  ']')
+    sxiv -z 0.1
+    ;;
+  *)
+    exit 2
+    ;;
+esac
+

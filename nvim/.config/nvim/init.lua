@@ -24,3 +24,4 @@ require "user.code-runner"
 require "user.markdown-preview"
 require "user.true-zen" -- for zen mode
 require "user.vimtex"
+require "user.surround"

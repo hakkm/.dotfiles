@@ -99,6 +99,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'preservim/nerdtree'
   Plug 'altercation/vim-colors-solarized'
   Plug 'scrooloose/syntastic'
+  Plug 'ctrlpvim/ctrlp.vim'
+
 call plug#end()
 
 " }}}
@@ -124,7 +126,7 @@ inoremap jj <Esc>
 inoremap kj <esc>
 
 " Press the space bar to type the : character in command mode.
-nnoremap <space> :
+"nnoremap <space> :
 
 " Pressing the letter o will open a new line below the current one.
 " Exit insert mode after creating a new line above or below the current line.
