@@ -126,7 +126,7 @@ return packer.startup(function(use)
   -- web dev
   use({
     "kylechui/nvim-surround",
-    tag = "*",   -- Use for stability; omit to use `main` branch for the latest features
+    tag = "*", -- Use for stability; omit to use `main` branch for the latest features
     config = function()
       require("nvim-surround").setup({
         -- Configuration here, or leave empty to use defaults
@@ -134,6 +134,11 @@ return packer.startup(function(use)
     end
   })
 
+  -- css
+
+  use 'NvChad/nvim-colorizer.lua'
+  use "max397574/colortils.nvim"
+  use 'mrshmllow/document-color.nvim'
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then

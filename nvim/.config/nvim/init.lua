@@ -25,3 +25,6 @@ require "user.markdown-preview"
 require "user.true-zen" -- for zen mode
 require "user.vimtex"
 require "user.surround"
+require "user.colorizer"
+require "user.colortils"
+require "user.doc-color"

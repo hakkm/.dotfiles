@@ -1,9 +1,12 @@
-local lsp = require('lsp-zero')
+local status_ok, lsp = pcall(require, "lsp-zero")
+if not status_ok then
+  vim.notify("lsp-zero don't work")
+  return
+end
 
 lsp.preset('recommended')
 
 lsp.on_attach(function(bufnr)
-  print("hello, do you know that you're using lsp? if not sun of a gun!")
   lsp.default_keymaps({ buffer = bufnr })
   lsp.buffer_autoformat()
 

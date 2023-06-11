@@ -11,6 +11,9 @@ export MANPAGER='nvim +Man!'
 export OPENER='zathura'
 export MANWIDTH=999
 
+# ranger stuff
+export RANGER_LOAD_DEFAULT_RC=false   # know ranger load just my rc.conf
+
 
 # eval "$(zoxide init zsh)"
 

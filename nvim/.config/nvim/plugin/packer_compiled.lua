@@ -124,10 +124,20 @@ _G.packer_plugins = {
     path = "/home/khabir/.local/share/nvim/site/pack/packer/start/code_runner.nvim",
     url = "https://github.com/CRAG666/code_runner.nvim"
   },
+  ["colortils.nvim"] = {
+    loaded = true,
+    path = "/home/khabir/.local/share/nvim/site/pack/packer/start/colortils.nvim",
+    url = "https://github.com/max397574/colortils.nvim"
+  },
   ["darkplus.nvim"] = {
     loaded = true,
     path = "/home/khabir/.local/share/nvim/site/pack/packer/start/darkplus.nvim",
     url = "https://github.com/lunarvim/darkplus.nvim"
+  },
+  ["document-color.nvim"] = {
+    loaded = true,
+    path = "/home/khabir/.local/share/nvim/site/pack/packer/start/document-color.nvim",
+    url = "https://github.com/mrshmllow/document-color.nvim"
   },
   ["friendly-snippets"] = {
     loaded = true,
@@ -183,6 +193,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/khabir/.local/share/nvim/site/pack/packer/start/nvim-cmp",
     url = "https://github.com/hrsh7th/nvim-cmp"
+  },
+  ["nvim-colorizer.lua"] = {
+    loaded = true,
+    path = "/home/khabir/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua",
+    url = "https://github.com/NvChad/nvim-colorizer.lua"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
