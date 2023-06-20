@@ -1,5 +1,5 @@
 super + c 
-  wifi-con
+  gnome-control-center wifi
 
 alt + space
   toggle_keyboard_layout
@@ -13,3 +13,8 @@ Print
 control + Print 
   file_path=~/pics/scrs/$(/bin/date +%y-%m-%d_%H:%M:%S).png && maim $file_path && sxiv $file_path
 
+super + n
+  emacs --file ~/t/rc.md
+
+super + e 
+  emacs
