@@ -17,6 +17,7 @@ add_to_path /home/khabir/bin
 add_to_path /usr/bin/bat:/usr/bin/sxiv:/usr/bin/zathura
 # lua
 add_to_path /usr/bin/lua
+add_to_path /home/khabir/.guix-profile/bin/
 
 # fix notification last for ever when running notify-send in .xprofile
 export 	EDITOR="nvim"

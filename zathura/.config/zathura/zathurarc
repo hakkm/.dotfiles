@@ -27,12 +27,17 @@ set statusbar-basename "false"
 set statusbar-home-tilde "false"
 
 # set recolor   
-# set recolor-lightcolor \#222222
+set recolor-lightcolor \#2b292e  #\#222222
 # set recolor-keephue
 set default-bg \#1f2227
+set default-fg \#7f7e7e
+#set recolor-darkcolor \#1f2227
 
 # map
 map ] zoom in
 map [ zoom out 
 map i recolor 
 map b toggle_statusbar
+
+map <C-l> feedkeys ":blist <Tab>"
+map <C-m> feedkeys ":bmark " 

@@ -17,3 +17,19 @@ sudo mkfs -t ext4 /dev/sdb1
 ## Wipe a Hard Drive
 sudo shred -vzn 3 /dev/sdX
               ***		;; number of passes you can do just `-vz /dev/sdX` for one pass
+
+## Burn an os to usb
+sudo dd bs=4M if=/path/to/file.iso of=/dev/sdX status=progress oflag=sync
+     				   	     *	    	       			;; the disk not the partition
+
+## Brave shortcuts
+brave://extensions/shortcuts
+
+## formatting a partition to ntfs
+sudo mkfs.ntfs /dev/sdxX
+
+### Verify formatting 
+sudo fsck /dev/sdxX
+
+
+

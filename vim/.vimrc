@@ -124,6 +124,7 @@ nnoremap <silent> <leader>p :%w !lp<CR>
 " Type jj and kj to exit insert mode quickly.
 inoremap jj <Esc>
 inoremap kj <esc>
+inoremap jk <esc>
 
 " Press the space bar to type the : character in command mode.
 "nnoremap <space> :
