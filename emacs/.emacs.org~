@@ -1,10 +1,7 @@
 #+title: Emacs Configuration
-#+PROPERTY: header-args:emacs-lisp :tangle /home/khabir/.emacs
+#+PROPERTY: header-args:emacs-lisp :tangle .emacs
 
-* Font Face
-#+begin_src emacs-lisp
-  (set-face-attribute 'default nil :family "monospace" :height 130)
-#+end_src
+
 * Basic UI 
 #+begin_src emacs-lisp
   (setq inhibit-startup-message t)      ;; start with plan text
@@ -19,7 +16,7 @@
   (column-number-mode)                  ;; add column number in line mode
   (global-display-line-numbers-mode t)
   (setq display-line-numbers 'relative)
-#+end_src          
+#+end_src
 
 * Tab width
 #+begin_src emacs-lisp
@@ -43,6 +40,10 @@
   (require 'use-package)
   (setq use-package-always-ensure t)
   #+END_SRC
+* Font Face
+#+begin_src emacs-lisp
+  (set-face-attribute 'default nil :family "monospace" :height 130)
+#+end_src
 * General package
 #+begin_src emacs-lisp
   (use-package general
@@ -63,10 +64,8 @@
       "ri" '(org-roam-node-insert :which-key "node insert")
       "p"  '(projectile-command-map :which-key "projectile")
       "e"  '(treemacs :which-key "treemacs")
-      "w"  '(save-buffer :which-key "write")
       "c"  '(:ignore t :which-key "commenting")		 
       "cd" '(comment-dwim :which-key "document")
-      "s"  '(flyspell-auto-correct-word :which-key "spell")
       "m"  '(mpv-insert-playback-position :which-key "mpv playback"))) 
 #+end_src
 
@@ -143,14 +142,20 @@
       :config
       (ivy-mode 1))
 
+    (ahk/leader-keys
+      "f"  '(switch-buffer  :which-key "toggles")) 
     (use-package counsel
-      :bind (("C-M-j" . 'counsel-switch-buffer)
-              :map minibuffer-local-map
-              ("C-r" . 'counsel-minibuffer-history))
+      :bind (;;("M-x" . 'counsel-M-x)
+             ("C-M-j" . 'counsel-switch-buffer))
+      ;; :map minibuffer-local-map
+      ;; ("C-r" . 'counsel-minibuffer-history))
       :custom
       (counsel-linux-app-format-function #'counsel-linux-app-format-function-name-only)
       :config
       (counsel-mode 1))
+
+    ;; (ahk/leader-keys
+    ;;   "f"  '(counsel-switch-buffer  :which-key "find file")) 
 
     (use-package ivy-rich
       :after ivy
@@ -444,20 +449,13 @@ This snippet adds a hook to =org-mode= buffers so that =ahk/org-babel-tangle-con
 
 * spelling 
 #+begin_src emacs-lisp
-  ;; spelling 
-    (use-package flyspell)
-    (dolist (hook '(text-mode-hook
-                    org-mode-hook))
-      (add-hook hook (lambda () (flyspell-mode 1)(unbind-key "C-M-i"))))
+;; spelling 
+  (use-package flyspell)
+  (dolist (hook '(text-mode-hook
+                  org-mode-hook))
+    (add-hook hook (lambda () (flyspell-mode 1))))
 
-    (use-package smex)
-#+end_src
-To disable =C-M-i= binding for =completion-at-point=
-#+begin_src emacs-lisp :result output
-  (defun ahk/disable-flyspell-key()
-    (eval-after-load "flyspell"
-    '(define-key flyspell-mode-map (kbd "C-M-i") nil)))
-  (add-hook 'org-mode-hook 'ahk/disable-flyspell-key)
+  (use-package smex)
 #+end_src
 
 * Org Align Tags
@@ -613,16 +611,13 @@ You need to import the project when they as you in order to work,
   (use-package company
     :after lsp-mode
     :hook (lsp-mode . company-mode)
-
     :bind (:map company-active-map
            ("<tab>" . company-complete-selection))
           (:map lsp-mode-map
            ("<tab>" . company-indent-or-complete-common))
     :custom
     (company-minimum-prefix-length 1)
-    (company-idle-delay 0.0)
-    :config
-      (push 'company-capf company-backends))
+    (company-idle-delay 0.0))
 
   (use-package company-box
     :hook (company-mode . company-box-mode))
@@ -719,19 +714,23 @@ insert: you can insert a node that don't exist yet
 #+begin_src emacs-lisp
   (use-package org-roam
     :ensure t
-    :init
-    (setq org-roam-v2-ack t)
     :custom
     (org-roam-directory "~/docs/roam-notes")
-    (org-roam-completion-everywhere t)
-    :bind (("C-c n l" . org-roam-buffer-toggle)
-           ("C-c n f" . org-roam-node-find)
-           ("C-c n i" . org-roam-node-insert)
-           :map org-mode-map
-           ("C-M-i"    . completion-at-point))
+    (org-roam-complete-everywhere t)
+
+    :general
+      (:states 'normal
+        "SPC rf" 'org-roam-buffer-find)
+    ;; :bind (("SPC-l" . org-roam-buffer-toggle)
+    ;;        (SPC f" . org-roam-node-find)
+    ;;        ("SPC i" . org-roam-node-insert)
+    ;;        :map org-mode-map
+    ;;        ("C-M-i" . completion-at-point)
+    ;;        :map org-roam-dailies-map
+    ;;        ("Y" . org-roam-dailies-capture-yesterday)
+    ;;        ("T" . org-roam-dailies-capture-tomorrow))
     :config
     (org-roam-setup)
-    (org-roam-db-autosync-mode))
-
-  #+end_src
+    )
+#+end_src
 

@@ -17,4 +17,4 @@ super + n
   emacs --file ~/t/rc.md
 
 super + e 
-  emacs
+  emacs ~/.emacs.org
