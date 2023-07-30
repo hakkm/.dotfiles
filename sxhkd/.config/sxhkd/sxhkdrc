@@ -1,6 +1,5 @@
 super + c 
-  gnome-control-center wifi
-
+  wifi-con
 alt + space
   toggle_keyboard_layout
 

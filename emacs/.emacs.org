@@ -1,10 +1,6 @@
 #+title: Emacs Configuration
 #+PROPERTY: header-args:emacs-lisp :tangle /home/khabir/.emacs
 
-* Font Face
-#+begin_src emacs-lisp
-  (set-face-attribute 'default nil :family "monospace" :height 130)
-#+end_src
 * Basic UI 
 #+begin_src emacs-lisp
   (setq inhibit-startup-message t)      ;; start with plan text
@@ -51,23 +47,27 @@
     (general-create-definer ahk/leader-keys
       :keymaps  '(normal insert visual emacs)
       :prefix "SPC"	
-      :global-prefix "C-SPC")							
+      :global-prefix "C-SPC")						
 
     (ahk/leader-keys
       "t"  '(:ignore t  :which-key "toggles")
       "tt" '(counsel-load-theme :which-key "choose theme")
       "ts" '(hydra-text-scale/body :which-key "scale text")
-      "r"  '(:ignore r  :which-key "Roam")
-      "rl" '(org-roam-buffer-toggle :which-key "buffer toggle")
-      "rf" '(org-roam-node-find :which-key "node find")
-      "ri" '(org-roam-node-insert :which-key "node insert")
+      "n"  '(:ignore r  :which-key "Roam")
+      "nl" '(org-roam-buffer-toggle :which-key "buffer toggle")
+      "nf" '(org-roam-node-find :which-key "node find")
+      "ni" '(org-roam-node-insert :which-key "node insert")
+      "nd" '(org-roam-dailies-map :which-key "node insert")
       "p"  '(projectile-command-map :which-key "projectile")
+      "b"  '(persp-switch-to-buffer* :which-key "buffer switch")
+      "r"  '(quickrun-shell :which-key "run")
       "e"  '(treemacs :which-key "treemacs")
       "w"  '(save-buffer :which-key "write")
+      "q"  '(kill-buffer-and-window :which-key "quit")
       "c"  '(:ignore t :which-key "commenting")		 
       "cd" '(comment-dwim :which-key "document")
       "s"  '(flyspell-auto-correct-word :which-key "spell")
-      "m"  '(mpv-insert-playback-position :which-key "mpv playback"))) 
+      "m"  '(mpv-insert-playback-position :which-key "mpv playback")))
 #+end_src
 
 * General key-bindings
@@ -203,25 +203,25 @@
 #+end_src
 
 * Projectile
-#+begin_src emacs-lisp
-  (use-package projectile
-    :ensure t
-    :init
-    (projectile-mode +1)
-    :bind (:map projectile-mode-map
-                ("s-p" . projectile-command-map)
-                ("C-c p" . projectile-command-map)))
-  (use-package projectile
-    :diminish projectile-mode
-    :config (projectile-mode)
-    :custom ((projectile-completion-system 'ivy))
-    :bind-keymap
-    ("C-c p" . projectile-command-map)
-    :init
-    ;; NOTE: Set this to the folder where you keep your Git repos!
-    (when (file-directory-p "~/pr/python/projects")
-      (setq projectile-project-search-path '("~/pr/python/projects")))
-    (setq projectile-switch-project-action #'projectile-dired))
+#+begin_src elisp
+  ;; (use-package projectile
+  ;;   :ensure t
+  ;;   :init
+  ;;   (projectile-mode +1)
+  ;;   :bind (:map projectile-mode-map
+  ;;               ("s-p" . projectile-command-map)
+  ;;               ("c-c p" . projectile-command-map)))
+  ;; (use-package projectile
+  ;;   :diminish projectile-mode
+  ;;   :config (projectile-mode)
+  ;;   :custom ((projectile-completion-system 'ivy))
+  ;;   :bind-keymap
+  ;;   ("c-c p" . projectile-command-map)
+  ;;   :init
+  ;;   ;; NOTE: Set this to the folder where you keep your Git repos!
+  ;;   (when (file-directory-p "~/pr/python/projects")
+  ;;     (setq projectile-project-search-path '("~/pr/python/projects")))
+  ;;   (setq projectile-switch-project-action #'projectile-dired))
 #+end_src
 
 * Counsel Projectile
@@ -361,6 +361,7 @@
 
   (dolist (mode '(org-mode-hook
                   term-mode-hook
+                  vterm-mode-hook
                   shell-mode-hook
                   treemacs-mode-hook		
                   eshell-mode-hook
@@ -375,24 +376,24 @@
 #+begin_src emacs-lisp
   (require 'org-tempo)
 
-  (add-to-list 'org-structure-template-alist '("sh" . "src shell :result output"))
-  (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp :result output"))
-  (add-to-list 'org-structure-template-alist '("py" . "src python :result output"))
+  (add-to-list 'org-structure-template-alist '("sh" . "src shell :results output"))
+  (add-to-list 'org-structure-template-alist '("el" . "src elisp :results output"))
+  (add-to-list 'org-structure-template-alist '("py" . "src python :results output"))
   (add-to-list 'org-structure-template-alist '("q" . "quote"))
-  (add-to-list 'org-structure-template-alist '("j" . "src js :result output"))
+  (add-to-list 'org-structure-template-alist '("j" . "src js :results output"))
 #+end_src
 * Babel
 ** Basic 
 #+begin_src emacs-lisp
-        (org-babel-do-load-languages
-            'org-babel-load-languages
-            '((emacs-lisp . t)
-              (python     . t)
-              (js         . t)))
+    (org-babel-do-load-languages
+          'org-babel-load-languages
+          '((emacs-lisp . t)
+            (python     . t)
+            (js         . t)))
 
-        (push '("conf-unix" . conf-unix) org-src-lang-modes)
+      (push '("conf-unix" . conf-unix) org-src-lang-modes)
 
-      (setq org-confirm-babel-evaluate nil)
+    (setq org-confirm-babel-evaluate nil)
 
 #+end_src
 ** Babel for Js
@@ -403,8 +404,7 @@
 (org-babel-do-load-languages 'org-babel-load-languages org-babel-load-languages)
 (add-to-list 'org-babel-tangle-lang-exts '("js" . "js"))
 #+end_src
-** TODO Auto-tangle Configuration Files
-
+** Auto-tangle Configuration Files
 This snippet adds a hook to =org-mode= buffers so that =ahk/org-babel-tangle-config= gets executed each time such a buffer gets saved.  This function checks to see if the file being saved is the Emacs.org file you're looking at right now, and if so, automatically exports the configuration here to the associated output files.
 
 #+begin_src emacs-lisp
@@ -510,11 +510,13 @@ Then Install the server for each language
 
   (defun ahk/lsp-mode-setup ()
     (setq lsp-headerline-breadcrumb-segments '(path-up-to-project file symbols))
-    (lsp-headerline-breadcrumb-mode))
+    (lsp-headerline-breadcrumb-mode)
+    (electric-pair-mode))
 
   (use-package lsp-mode
     :commands (lsp lsp-deferred)
-    :hook (lsp-mode . ahk/lsp-mode-setup)
+    :hook ((lsp-mode . ahk/lsp-mode-setup)
+           ((python-mode c-mode js-mode) . lsp-deferred))
     :init
     (setq lsp-keymap-prefix "C-c l")  ;; Or 'C-l', 's-l'
     :config
@@ -523,10 +525,24 @@ Then Install the server for each language
 *** Lsp UI
 #+begin_src emacs-lisp
 
+  ;; (use-package lsp-ui
+  ;;   :hook (lsp-mode . lsp-ui-mode)
+  ;;   :custom
+  ;;   (lsp-ui-doc-position 'bottom))
   (use-package lsp-ui
-    :hook (lsp-mode . lsp-ui-mode)
-    :custom
-    (lsp-ui-doc-position 'bottom))
+    :config (setq lsp-ui-sideline-show-hover t
+                  lsp-ui-sideline-delay 0.5
+                  lsp-ui-doc-delay 5
+                  lsp-ui-sideline-ignore-duplicates t
+                  lsp-ui-doc-position 'bottom
+                  lsp-ui-doc-alignment 'frame
+                  lsp-ui-doc-header nil
+                  lsp-ui-doc-include-signature t
+                  lsp-ui-doc-use-childframe t)
+    :commands lsp-ui-mode
+    :bind (:map evil-normal-state-map
+                ("gd" . lsp-ui-peek-find-definitions)
+                ("gr" . lsp-ui-peek-find-references)))
 #+end_src
 *** Lsp-treemacs 
 
@@ -574,7 +590,7 @@ Click with mouse for more info
 ** References  0:21:54 
 built in when you hover
 0:24:30: rename in all refrences with C-c l r r 
-** Diagnostics
+** Diagnostics And showing errors
 0:26:38: flymake-diagnostics-buffer
 ** Code Actions
 C-c l a a
@@ -582,26 +598,36 @@ In python until now it don't work and the light bale don't show up
 ** Formatting
 Don't work
 ** Python
+Video: [[mpv:/home/khabir/vids/emacs/ide/Emacs_IDE-Python_Development_Configuration.webm][python ide]]
+Try:
+=python-shell-send-region= you need to select the region
+=python-shell-send-file= choose a file from disk
+=python-shell-send-buffer= 
+=python-shell-send-defun= put your cursor on a function and run the command it will demand
+how you want to call the function 00:12:22
+
 You need to import the project when they as you in order to work,
 #+begin_src emacs-lisp
   (use-package python-mode
     :ensure t
-    :hook (python-mode . lsp-deferred)
-    :custom
+    :hook (python-mode . lsp-deferred))
     ;; NOTE: Set these if Python 3 is called "python3" on your system!
-    ;; (python-shell-interpreter "python3")
+    
     ;; (dap-python-executable "python3")
-    (dap-python-debugger 'debugpy)
-    :config
-    (require 'dap-python))
-  (setq python-indent-offset 2)
+  ;;   (dap-python-debugger 'debugpy)
+  ;; ;
+                                          ;   :config
+  ;; ;
+                                          ;   (require 'dap-python))
+  ;; ;
+                                          ; (setq python-indent-offset 2)
 #+end_src
 *Solving indentation in code blocks*
 #+begin_src emacs-lisp
-(setq org-startup-indented t)
-(setq python-indent-guess-indent-offset t)  
-(setq python-indent-guess-indent-offset-verbose nil)
-(setq org-edit-src-code-indentation 2)
+  ;; (setq org-startup-indented t)
+  ;; (setq python-indent-guess-indent-offset t)  
+  ;; (setq python-indent-guess-indent-offset-verbose nil)
+  ;; (setq org-edit-src-code-indentation 2)
 #+end_src
 ** JavaScript
 #+begin_src emacs-lisp
@@ -627,6 +653,20 @@ You need to import the project when they as you in order to work,
   (use-package company-box
     :hook (company-mode . company-box-mode))
 #+end_src
+** Integration with yasnippet
+#+begin_src elisp :results output
+  (defun company-yasnippet-or-completion()
+    (interactive)
+    (let ((yas-fallback-behavior nil))
+      (unless (yas-expand)
+        (call-interactively #'company-complete-comon))))
+
+  (add-hook 'company-mode-hook (lambda()
+                                 (substitute-key-definition 'company-complete-common
+                                                            'company-yasnippet-or-completion
+                                                            company-active-map)))
+#+end_src
+
 * Window Resizing bindings
 #+begin_src emacs-lisp
     (global-set-key (kbd "C-<left>") 'shrink-window-horizontally)
@@ -641,6 +681,7 @@ You need to import the project when they as you in order to work,
   :config
   (setq yay-snippet-dirs '("~/.emacs.d/snippets"))
   (yas-global-mode 1))
+(use-package yasnippet-snippets)
 #+end_src
 ** Examples
 *** For loop
@@ -665,6 +706,7 @@ print("hello")
 * Promodoro
 run the command =org-timer-set-timer= and type the num of minutes you want.
 You can pause it and resume it 
+sound not working for my drive(?)
 #+begin_src emacs-lisp
 (setq org-clock-sound "/home/khabir/msc/ding.wav")
 #+end_src
@@ -684,7 +726,7 @@ M-n(next) and M-p (previous)
 (savehist-mode t)
 #+end_src
 ** TODO Sound not working
-* Save Place Mode
+* Save Place -Mode
 
 #+begin_src emacs-lisp
 ;; Remember the place where you left it last visit
@@ -716,22 +758,195 @@ You can turn off backups:
 #+end_src
 * Org Rom
 insert: you can insert a node that don't exist yet
+
+=M-x org-id-get-create= : make a heading a node. use it when you want a heading to be a node
+but not creating a file for it
+
+What if some nodes have the same name (they are different because of the id): use Alias
+with =M-x org-roam-alias-add= command. but don't get yourself to this case
+
 #+begin_src emacs-lisp
+(use-package org-roam
+  :ensure t
+  :init
+  (setq org-roam-v2-ack t)
+  :custom
+  (org-roam-directory "~/docs/roam-notes")
+  (org-roam-completion-everywhere t)
+  (org-roam-dailies-capture-templates
+    '(("d" "default" entry "* %<%I:%M %p>: %?"
+       :if-new (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n"))))
+  :bind (("C-c n l" . org-roam-buffer-toggle)
+         ("C-c n f" . org-roam-node-find)
+         ("C-c n i" . org-roam-node-insert)
+         :map org-mode-map
+         ("C-M-i" . completion-at-point)
+         :map org-roam-dailies-map
+         ("Y" . org-roam-dailies-capture-yesterday)
+         ("T" . org-roam-dailies-capture-tomorrow))
+  :bind-keymap
+  ("C-c n d" . org-roam-dailies-map)
+  :config
+  (require 'org-roam-dailies) ;; Ensure the keymap is available
+  (org-roam-db-autosync-mode))
+
   (use-package org-roam
     :ensure t
     :init
     (setq org-roam-v2-ack t)
     :custom
-    (org-roam-directory "~/docs/roam-notes")
     (org-roam-completion-everywhere t)
     :bind (("C-c n l" . org-roam-buffer-toggle)
            ("C-c n f" . org-roam-node-find)
            ("C-c n i" . org-roam-node-insert)
            :map org-mode-map
-           ("C-M-i"    . completion-at-point))
+           ("C-M-i"    . completion-at-point)
+          :map org-roam-dailies-map
+          ("Y" . org-roam-dailies-capture-yesterday)
+          ("T" . org-roam-dailies-capture-tomorrow))
+    :bind-keymap
+    ("C-c n d" . org-roam-dailies-map)
     :config
-    (org-roam-setup)
+    (require 'org-roam-dailies) ;; Ensure the keymap is available
     (org-roam-db-autosync-mode))
 
   #+end_src
+* Auto Pairs 
+#+begin_src emacs-lisp :result output
+(add-hook 'prog-mode-hook 'electronic-pair-mode)
+
+(add-hook 'text-mode-hook 'electronic-pair-mode)
+#+end_src>
+* File Management
+** Dired
+
+Dired is a built-in file manager for Emacs that does some pretty amazing things!  Here are some key bindings you should try out:
+
+*** Key Bindings
+
+**** Navigation
+
+*Emacs* / *Evil*
+- =n= / =j= - next line
+- =p= / =k= - previous line
+- =j= / =J= - jump to file in buffer
+- =RET= - select file or directory
+- =^= - go to parent directory
+- =S-RET= / =g O= - Open file in "other" window
+- =M-RET= - Show file in other window without focusing (previewing files)
+- =g o= (=dired-view-file=) - Open file but in a "preview" mode, close with =q=
+- =g= / =g r= Refresh the buffer with =revert-buffer= after changing configuration (and after filesystem changes!)
+
+**** Marking files
+
+- =m= - Marks a file
+- =u= - Unmarks a file
+- =U= - Unmarks all files in buffer
+- =* t= / =t= - Inverts marked files in buffer
+- =% m= - Mark files in buffer using regular expression
+- =*= - Lots of other auto-marking functions
+- =k= / =K= - "Kill" marked items (refresh buffer with =g= / =g r= to get them back)
+- Many operations can be done on a single file if there are no active marks!
+
+**** Copying and Renaming files
+
+- =C= - Copy marked files (or if no files are marked, the current file)
+- Copying single and multiple files
+- =U= - Unmark all files in buffer
+- =R= - Rename marked files, renaming multiple is a move!
+- =% R= - Rename based on regular expression: =^test= , =old-\&=
+
+*Power command*: =C-x C-q= (=dired-toggle-read-only=) - Makes all file names in the buffer editable directly to rename them!  Press =Z Z= to confirm renaming or =Z Q= to abort.
+
+**** Deleting files
+
+- =D= - Delete marked file
+- =d= - Mark file for deletion
+- =x= - Execute deletion for marks
+- =delete-by-moving-to-trash= - Move to trash instead of deleting permanently
+
+**** Creating and extracting archives
+
+- =Z= - Compress or uncompress a file or folder to (=.tar.gz=)
+- =c= - Compress selection to a specific file
+- =dired-compress-files-alist= - Bind compression commands to file extension
+
+**** Other common operations
+
+- =T= - Touch (change timestamp)
+- =M= - Change file mode
+- =O= - Change file owner
+- =G= - Change file group
+- =S= - Create a symbolic link to this file
+- =L= - Load an Emacs Lisp file into Emacs
+
+**** TODO Set binding to create folder and empty file
+*** Configuration
+
+#+begin_src emacs-lisp
+
+  (use-package dired
+    :ensure nil
+    :commands (dired dired-jump)
+    :bind (("C-x C-j" . dired-jump))
+    :custom ((dired-listing-switches "-agho --group-directories-first"))
+    :config
+    (evil-collection-define-key 'normal 'dired-mode-map
+      "h" 'dired-single-up-directory
+      "l" 'dired-single-buffer))
+
+  (use-package dired-single
+    :commands (dired dired-jump))
+
+  (use-package all-the-icons-dired
+    :hook (dired-mode . all-the-icons-dired-mode))
+
+  (use-package dired-open
+    :commands (dired dired-jump)
+    :config
+    ;; Doesn't work as expected!
+    ;;(add-to-list 'dired-open-functions #'dired-open-xdg t)
+    (setq dired-open-extensions '(("png" . "feh")
+                                  ("mkv" . "mpv"))))
+
+  (use-package dired-hide-dotfiles
+    :hook (dired-mode . dired-hide-dotfiles-mode)
+    :config
+    (evil-collection-define-key 'normal 'dired-mode-map
+      "H" 'dired-hide-dotfiles-mode))
+
+#+end_src
+
+* Arabic Support
+=C-x RET C-\= to change language (input method), don't change the keyboard layout on your
+system
+then add this propriety to org mode =#+LANGUAGE: ar=
+#+begin_src emacs-lisp :results output
+(defun set-bidi-env ()
+  "interactive"
+  (setq bidi-paragraph-direction 'nil))
+(add-hook 'org-mode-hook 'set-bidi-env)
+#+end_src
+
+* Terminal
+#+begin_src emacs-lisp :results output
+(use-package vterm)
+#+end_src
+
+* Window Management
+The =persp-switch= command (=C-x x s=) will prompt you for the name of a perspective to switch to. If you enter a name for a perspective that doesn’t exist yet, it will be created.
+#+begin_src emacs-lisp
+  (use-package perspective
+    :bind (("C-x b" . persp-switch-to-buffer*)
+           ("C-x C-b" . persp-switch-to-buffer*)
+           ("C-x k" . persp-kill-buffer*))
+    :custom
+    (persp-mode-prefix-key (kbd "C-x x"))
+    :config
+    (persp-mode))
+#+end_src
+* Font Face
+#+begin_src emacs-lisp
+  (set-face-attribute 'default nil :family "monospace" :height 130)
+#+end_src
 

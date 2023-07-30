@@ -27,7 +27,7 @@ alias sxrc='nvim ~/.config/sxhkd/sxhkdrc'
 alias aliasrc='nvim ~/.config/zsh/zsh-aliases'
 alias sxivrc="nvim ~/.config/sxiv/exec/key-handler"
 ## scripts
-alias sc='cd ~/.local/bin'
+alias sc='cd ~/.local/scripts'
 
 # Colorize grep output (good for log files)
 alias grep='grep --color=auto'

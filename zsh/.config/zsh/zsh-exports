@@ -47,13 +47,12 @@ function add_to_path {
 }
 #  adding /home/khabir/.local/bin to path.
 add_to_path /home/khabir/.local/bin
-#  for creating executable files in /home/khabir/bin
-add_to_path /home/khabir/bin
 # bat, zathura, sxiv
 add_to_path /usr/bin/bat:/usr/bin/sxiv:/usr/bin/zathura
 # lua
 add_to_path /usr/bin/lua
 add_to_path $PYENV_ROOT/bin
+add_to_path /home/khabir/.local/scripts
 
 
 # ranger quit with Q cd to current dir
