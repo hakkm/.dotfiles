@@ -1,0 +1,19 @@
+#!/bin/bash
+
+bssid=$(nmcli device wifi list | sed -n '1!p' | cut -b 9- | dmenu -p "Select wifi: " -l 20 | cut -d' ' -f1)
+
+# check if i'm already Connected 
+connected=$(nmcli -t -f GENERAL.STATE device show wlan0)
+
+if [[ "$connected" == "100 (connected)" ]]; then
+    notify-send "Connected" "You are connected to Wi-Fi."
+fi
+
+if [ -n "$bssid" ]; then
+  pass=$(echo | dmenu -p "Enter password: " )
+
+  output=$(nmcli device wifi connect "$bssid" password "$pass")
+  notify-send "Connected" "$output"
+# else 
+#   notify-send "Error" "No BSSID selected"
+fi

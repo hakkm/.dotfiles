@@ -1,0 +1,6 @@
+#!/bin/python3
+from salatime import PrayerScheduler
+
+
+p_s = PrayerScheduler()
+p_s.schedule()

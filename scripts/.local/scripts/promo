@@ -5,6 +5,7 @@
 work_time_s=$(($1 * 60))
 sleep $work_time_s
 
+mpv ~/msc/ding.wav
 notify-send "Time's up!" "Your work time is over. $work_time_min min."
 
 sleep 10

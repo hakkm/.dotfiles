@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# you need to add the keyboard layout to the layouts table
+# for it to work.
+
+layouts=(us ara)
+current_layout=$(setxkbmap -query | awk '/layout/ {print $2}')
+
+for ((i=0; i<"${#layouts[@]}"; i++)); do
+  if [ "${layouts[i]}" = "$current_layout" ]; then
+    next_layout=$(( (i + 1) % ${#layouts[@]} ))
+    setxkbmap -layout "${layouts[next_layout]}"
+    break
+  fi
+done

@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# old_image_name="something.jpeg" # or ./something.jpeg
+# old_image_name_ext=".jpeg"
+
+window_id=$(xdotool search --name "sxiv" getwindowpid)
+echo $window_id
+
+# new_base_name="$($ echo -n '' 2> /dev/null | dmenu -p "rename: " -w $window_id | tr -d '\n')"
+# echo $new_base_name
+
+# add remove extension
+
+# new_image_name=$new_base_name$old_image_name_ext
+
+
+
+# mv old_image_name new_image_name
