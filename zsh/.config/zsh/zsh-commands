@@ -2,3 +2,21 @@ cdpr(){cd "$(find ~/pr -type d | grep -v -e "node_modules" -e "/.git" -e ".vscod
 
 
 pr(){find ~/pr -type d | grep -v -e "node_modules" -e "/.git" -e ".vscode" -e "__MACOSX" -e ".cache" -e "env" -e ".ipython" -e /"*.egg-info" -e "latex-beamer*" -e ".ipynb_checkpoints" -e ".idea" | fzf}
+
+sc() {
+find ~/.local/scripts/ -type f | grep -v -e ".git" -e "Makefile" | fzf --preview "bat --color=always --style=plain {}" | xargs -r nvim
+}
+
+co() {
+find ~/.dotfiles ~/.config/ -type f | grep -v -e ".git" -e "Makefile" -e "Brave" -e "Virtual" | fzf --preview "bat --color=always --style=plain {}" | xargs -r nvim
+}
+
+etc() {
+find /etc -type f | grep -v -e ".git" -e "Makefile" -e "Brave" -e "Virtual" | fzf --preview "bat --color=always --style=plain {}" | xargs -r nvim
+}
+
+# General One
+## Search For a File
+sff() {
+find $@ -type f | grep -v -e ".git" -e "Makefile" -e "Brave" -e "Virtual" | fzf --preview "bat --color=always --style=plain {}" | xargs -r nvim
+}
