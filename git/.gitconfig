@@ -1,0 +1,19 @@
+[user]
+	name = Khabir
+	email = hakim1khabir2@gmail.com
+[core]
+	editor = nvim
+  pager = less
+[color]
+	ui = true
+[init]
+	defaultBranch = main
+[alias]
+	s = status -s
+	ls = log --oneline --graph --all
+	ll = log --oneline --graph --all
+  co = checkout
+  br = branch
+  ca = commit -am
+  c = commit -m
+  a = add .
