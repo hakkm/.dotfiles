@@ -8,8 +8,51 @@
 "                 ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
 "               
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""  
+
+" PLUGINS ---------------------------------------------------------------- {{{
+
+call plug#begin('~/.vim/plugged')
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'junegunn/fzf.vim'
+  Plug 'dense-analysis/ale'
+  Plug 'preservim/nerdtree'
+  Plug 'altercation/vim-colors-solarized'
+  Plug 'scrooloose/syntastic'
+  Plug 'ctrlpvim/ctrlp.vim'
+  Plug 'easymotion/vim-easymotion'
+  Plug 'amix/open_file_under_cursor.vim'
+  Plug 'tpope/vim-fugitive'
+  Plug 'Shougo/unite.vim'
+  " themes 
+  Plug 'morhetz/gruvbox'
+  Plug 'tomasr/molokai'
+  Plug 'tomasiser/vim-code-dark'
+
+
+
+call plug#end()
+
+" }}}
+
+" General {{{
+" clipboard to primary{{{{{{{{{
+"set clipboard=unnamedplus,unnamed
+set clipboard=unnamed
+autocmd VimLeave * call system("echo -n $'" . escape(getreg(), "'") . "' | xsel --input --clipboard")}}}}}}}}}
+" Adding spell mistakes
+set spell
+
+" Enable mouse 
+set mouse=a
+
 " Disable compatibility with vi which can cause unexpected issues.
 set nocompatible
+
+" Setting dark mode
+set background=dark    
+
+" set color scheme
+colorscheme codedark
 
 " Enable type file detection. Vim will be able to try to detect the type of file in use.
 filetype on
@@ -20,14 +63,17 @@ filetype plugin on
 " Load an indent file for the detected file type.
 filetype indent on
 
-" Turn syntax highlighting on.
+" Turn syntax highlighting off.
 syntax on
 
-" Add numbers to each line on the left-hand side.
+" Add numbers to each line off the left-hand side.
 set number
 
-" add relative numver 
+" add relative number 
 set relativenumber
+
+" fuck NO Write since message
+set hidden
 
 " Highlight cursor line underneath the cursor horizontally.
 "set cursorline
@@ -36,10 +82,10 @@ set relativenumber
 "set cursorcolumn
 
 " Set shift width to 4 spaces.
-set shiftwidth=4
+set shiftwidth=2
 
 " Set tab width to 4 columns.
-set tabstop=4
+set tabstop=2
 
 " Use space characters instead of tabs.
 set expandtab
@@ -56,7 +102,14 @@ set nowrap
 " While searching though a file incrementally highlight matching characters as you type.
 set incsearch
 
-" Ignore capital letters during search.
+" Use highlighting when doing a search.
+set hlsearch
+
+" 
+highlight CursorLine ctermbg=255
+
+
+" Ignore capital letters during!   search.
 set ignorecase
 
 " Override the ignorecase option if searching for capital letters.
@@ -72,9 +125,6 @@ set showmode
 " Show matching words during a search.
 set showmatch
 
-" Use highlighting when doing a search.
-set hlsearch
-
 " Set the commands to save in history default number is 20.
 set history=1000
 
@@ -86,31 +136,16 @@ set wildmode=list:longest
 
 " There are certain files that we would never want to edit with Vim.
 " Wildmenu will ignore files with these extensions.
-set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
-
-:colorscheme molokai
-
-" PLUGINS ---------------------------------------------------------------- {{{
-
-call plug#begin('~/.vim/plugged')
-
-  Plug 'dense-analysis/ale'
-  Plug 'scrooloose/nerdcommenter'
-  Plug 'preservim/nerdtree'
-  Plug 'altercation/vim-colors-solarized'
-  Plug 'scrooloose/syntastic'
-  Plug 'ctrlpvim/ctrlp.vim'
-
-call plug#end()
-
-" }}}
-
+set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx"}}}
 
 " MAPPINGS --------------------------------------------------------------- {{{
 let mapleader = " "
 
 
-nnoremap <leader>\ :nohlsearch<CR>
+nnoremap <leader>h :nohlsearch<CR>
+nnoremap <leader>w :w<CR>
+nnoremap <leader>q :wq<CR>
+nnoremap <leader>f :FZF<CR>
 
 " Press \\ to jump back to the last cursor position.
 nnoremap <leader>\ ``
@@ -131,10 +166,11 @@ inoremap jk <esc>
 
 " Pressing the letter o will open a new line below the current one.
 " Exit insert mode after creating a new line above or below the current line.
-nnoremap o o<esc>
-nnoremap O O<esc>
+"nnoremap o o<esc>
+"nnoremap O O<esc>
 
 " Center the cursor vertically when moving to the next word during a search.
+
 nnoremap n nzz
 nnoremap N Nzz
 
@@ -171,8 +207,11 @@ nnoremap <leader>e :NERDTreeToggle<cr>
 " Have nerdtree ignore certain files and directories.
 let NERDTreeIgnore=['\.git$', '\.jpg$', '\.mp4$', '\.ogg$', '\.iso$', '\.pdf$', '\.pyc$', '\.odt$', '\.png$', '\.gif$', '\.db$']
 
-" }}}
+" fast configuration of vim
+nmap <leader>v :tabedit $MYVIMRC<CR>
 
+
+" }}}
 
 " VIMSCRIPT -------------------------------------------------------------- {{{
 
@@ -251,8 +290,12 @@ if has('gui_running')
 
 endif
 
-" }}}
+" Source the vimrc file after saving it
+if has("autocmd")
+  autocmd bufwritepost .vimrc source $MYVIMRC
+endif
 
+" }}}
 
 " STATUS LINE ------------------------------------------------------------ {{{
 

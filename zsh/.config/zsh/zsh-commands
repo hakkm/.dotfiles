@@ -1,0 +1,4 @@
+cdpr(){cd "$(find ~/pr -type d | grep -v -e "node_modules" -e "/.git" -e ".vscode" -e "__MACOSX" -e ".cache" -e "env" -e ".ipython" -e /"*.egg-info" -e "latex-beamer*" -e ".ipynb_checkpoints" -e ".idea" | fzf )"}
+
+
+pr(){find ~/pr -type d | grep -v -e "node_modules" -e "/.git" -e ".vscode" -e "__MACOSX" -e ".cache" -e "env" -e ".ipython" -e /"*.egg-info" -e "latex-beamer*" -e ".ipynb_checkpoints" -e ".idea" | fzf}

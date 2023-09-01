@@ -1,20 +1,18 @@
 #!/bin/sh
+neofetch
 
 HISTSIZE=1000000
 SAVEHIST=1000000
 HISTFILE="$ZDOTDIR/.zsh_history"
 
-GUIX_PROFILE="/home/khabir/.guix-profile"
-. "$GUIX_PROFILE/etc/profile"
-
-GUIX_PROFILE="/home/khabir/.config/guix/current/"
-. "$GUIX_PROFILE/etc/profile"
 
 export VISUAL=nvim
 export EDITOR="nvim"
 export BROWSER="brave-beta"
 export MANPAGER='nvim +Man!'
+export PAGER='nvim +Man!'
 export OPENER='zathura'
+export TERMINAL='alacritty'
 export MANWIDTH=999
 
 # ranger stuff

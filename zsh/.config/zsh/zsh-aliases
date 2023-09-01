@@ -1,5 +1,13 @@
 #!/bin/sh
 
+## pacman 
+alias i='yay -S'
+alias u='yay -Syu'
+alias r='yay -Rns'   # remove a package and its dependencies which are not required by any other installed package:
+alias q='yay -Ss'
+alias c='yay -Yc'
+
+
 # app images
 alias obsidian="~/dows/Obsidian-1.2.8.AppImage"
 
@@ -7,6 +15,7 @@ alias p="sudo pacman"
 alias ls='ls --color=auto'
 alias j='z'
 alias f='zi'
+alias vi='vim'
 alias zsh-update-plugins="find "$ZDOTDIR/plugins" -type d -exec test -e '{}/.git' ';' -print0 | xargs -I {} -0 git -C {} pull -q"
 
 # ls 
@@ -20,12 +29,14 @@ alias rangerrc='nvim ~/.config/ranger/rc.conf'
 alias lfrc='nvim ~/.config/lf/lfrc'
 alias dwmfrc='cd ~/.config/dwm-flexipatch/'
 alias dwmrc='cd ~/.config/dwm/'
+alias dmrc='cd ~/.config/dmenu/'
 alias zathurarc='nvim ~/.config/zathura/zathurarc'
 alias alacrittyrc='nvim ~/.config/alacritty/alacritty.yml'
 alias slrc='cd ~/.config/slstatus/ && nvim .'
 alias sxrc='nvim ~/.config/sxhkd/sxhkdrc'
 alias aliasrc='nvim ~/.config/zsh/zsh-aliases'
 alias sxivrc="nvim ~/.config/sxiv/exec/key-handler"
+alias picomrc="nvim ~/.config/picom.conf"
 ## scripts
 alias sc='cd ~/.local/scripts'
 
@@ -53,10 +64,11 @@ alias pscpu='ps auxf | sort -nr -k 3 | head -5'
 alias list_systemctl="systemctl list-unit-files --state=enabled"
 
 # brave-browser
-alias brave='brave-nightly'
+alias brave='brave-beta'
 
-# alias for cisco linux cource
+# learning 
 alias lnx='$BROWSER https://www.netacad.com/portal/learning'
+alias nt='$BROWSER "https://skillsforall.com/launch?id=f393c38f-b410-4d2b-8275-70e144273519&tab=curriculum&view=79932ede-7bba-57ef-a312-ac4d72c37c84"'
 
 # suspend or sleep the computer
 alias go-sleep='systemctl suspend -i'
