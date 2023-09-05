@@ -3,12 +3,7 @@
 # Make sure this is before the 'exec' command or it won't be sourced.
 [ -f /etc/xprofile ] && . /etc/xprofile
 [[ -f ~/.xprofile ]] && . ~/.xprofile
-
-# testing you can deleted fine
-userresources=$HOME/.Xresources
-usermodmap=$HOME/.Xmodmap
-sysresources=/etc/X11/xinit/.Xresources
-sysmodmap=/etc/X11/xinit/.Xmodmap
+[[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap
 
 # merge in defaults and keymaps
 
@@ -37,19 +32,10 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 
-#twm &
-#xclock -geometry 50x50-1+1 &
-#xterm -geometry 80x50+494+51 &
-#xterm -geometry 80x20+494-0 &
-#exec xterm -geometry 80x66+0+0 -name login
-
-# keyboard layout
-exec ~/bin/startdwm
-exec /usr/local/bin/dwm
-
 # for dwm : Bind the right Alt key to Mod4
-xmodmap -e "keycode 108 = Super_L"  # reassign Alt_R to Super_L
-xmodmap -e "remove mod1 = Super_L"  # make sure X keeps it out of the mod1 group
+# xmodmap -e "keycode 135 = Super_R"  # reassign Alt_R to Super_L
+# xmodmap -e "keycode 135 = Super_L"  # reassign Alt_R to Super_L
+# xmodmap -e "remove mod1 = Super_L"  # make sure X keeps it out of the mod1 group
 
 
 

@@ -1,11 +1,14 @@
 #!/bin/sh
 
-## pacman 
+## pacman and yay
 alias i='yay -S'
 alias u='yay -Syu'
 alias r='yay -Rns'   # remove a package and its dependencies which are not required by any other installed package:
 alias q='yay -Ss'
 alias c='yay -Yc'
+
+# xev 
+alias xev="xev | awk -F'[ )]+' '/^KeyPress/ { a[NR+2] } NR in a { printf \"%-3s %s\n\", \$5, \$8 }'"
 
 
 # app images

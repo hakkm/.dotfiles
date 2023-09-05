@@ -4,6 +4,7 @@
 
 ### Adding to PATH
 #####################
+
 function add_to_path {
   if [[ ":$PATH:" != *":$1:"* ]]; then
     export PATH=$PATH:$1
@@ -17,7 +18,7 @@ add_to_path /home/khabir/bin
 add_to_path /usr/bin/bat:/usr/bin/sxiv:/usr/bin/zathura
 # lua
 add_to_path /usr/bin/lua
-add_to_path /home/khabir/.guix-profile/bin/
+
 add_to_path $PYENV_ROOT/bin
 add_to_path /home/khabir/.local/scripts
 
@@ -36,10 +37,10 @@ export MANWIDTH=999
 setbg $HOME/pics/wallpapers &       # set background
 slstatus &
 sxhkd &                         # for keybindings
-picom &
-safeeyes &
+# picom &
+safeeyes -e &
 
 # for dwm : Bind the right Alt key to Mod4
-xmodmap -e "keycode 108 = Super_L"  # reassign Alt_R to Super_L
-xmodmap -e "remove mod1 = Super_L"  # make sure X keeps it out of the mod1 group
+# xmodmap -e "keycode 108 = Super_L"  # reassign Alt_R to Super_L
+# xmodmap -e "remove mod1 = Super_L"  # make sure X keeps it out of the mod1 group
 
