@@ -1,7 +1,27 @@
-rc in rc.org stands for rare  commands
+rc in rc.org stands for rare commands
 
-* recording screen
-ffmpeg -f x11grab -i :0.0 vids/rec/out.mkv
+* Files Pdf
+** convert imgs to pdf 
+  =convert *.jpg out.pdf=
+  or 
+  =convert img1.jpg img2.jpg out.pdf=
+** rotate a photo 
+  =convert -rotate 90 img.jpg out.jpg=
+  or 
+  =convert img.jpg -rotate 180 out.jpg=
+  90 => 90 degrees clockwise, and so on
+
+* Image 
+** Annotation
+    =annotator=
+
+* Video 
+** Video editor
+   =shotcut=
+** recording screen
+  ffmpeg -f x11grab -i :0.0 vids/rec/out.mp4
+** Download from youtube
+  ytfzf -d
 
 * recording output audio
 pactl list short sources  ;;			      *			;; get the id of the output. it is 0
@@ -21,8 +41,16 @@ sudo shred -vzn 3 /dev/sdX
 sudo dd bs=4M if=/path/to/file.iso of=/dev/sdXx status=progress oflag=sync
      				   	     *	    	       			;; the disk not the partition
 
-* Brave shortcuts
-brave://extensions/shortcuts
+* Brave stuff
+** brave shortcuts
+   brave://extensions/shortcuts
+** duplicate
+   =C-l M-Return=
+   =C-l= for selecting the link
+
+** duplicate 
+   =C-l M-Return=
+   =C-l= for selecting the link
 
 * formatting a partition to ntfs
 sudo mkfs.ntfs /dev/sdxX
@@ -30,7 +58,84 @@ sudo mkfs.ntfs /dev/sdxX
 **  Verify formatting 
 sudo fsck /dev/sdxX
 
-
-
 * Create a windows bootable USB
 =sudo woeusb --device windows.iso /dev/sdX=
+
+* Rename in sxiv
+=C-x C-x=
+
+* ps command 
+`ps f` show tree
+
+* merge two dirs
+description: put changes from source to destination
+more info: see the video =~/vids/rec/merge-folders.mp4=
+=rsync -av --progress /path/to/source/ /path/to/destination/=
+
+** TODO --ignore-existing
+  =rsync -av --ignore-existing --progress /path/to/source/ /path/to/destination/=
+  the --ignore-existing is for not overwriting the files that are already in destination
+
+* obsidian
+  =C-M-f= add a file (pdf)
+  =M-F= embed a excalidraw file (workflow way)
+
+* editing on screen
+  gromix-mpx
+
+* Vim 
+** Git 
+*** Lazygit 
+**** checkout a branch
+     To return to main, go to Lazygit and <space> main in Local Branches Area to return to the main branch, then you can checkout other branches
+     When file do not reload after checkout, do =:e= to reload the file
+** Keybidings Rare 
+*** Line auto complete that you writed before 
+    =C+xl=
+** Filetype 
+   set filetype?
+** available options 
+  :options
+** Startup 
+*** fresh 
+  nvim -u NONE
+*** specific config
+    nvim -u .config/nvim.
+** Neorg
+*** when problem with parser run 
+    :Neorg sync-parsers
+** Test what's in you're mind 
+   Luapad
+** How to get or set env global variables 
+   vim.env.ZDOTDIR
+
+* R 
+** Install a package
+   =chooseCRANmirror(ind = 1)=
+   =install.packages("package-name")=
+
+* Set Up Python Environment
+** Create a Virtual Environment
+  python -m venv env
+** Activate the Virtual Environment
+  source env/bin/activate
+
+* Internet 
+** set up/down an interface 
+  sudo ip link set wlan0 up
+
+* AI in CLI 
+  ??
+  git?
+
+* Learn A New Programming Language
+** exploration documentation phase
+  Solve Problems in adventofcode.com => look at docs + solve
+** Build Projects
+  Build a Web Socket Server
+  chat room client
+
+* Mpv 
+** Control Volume
+   =0= increase volume
+   =9= decrease volume
