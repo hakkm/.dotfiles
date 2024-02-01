@@ -1,5 +1,4 @@
 #!/bin/sh
-neofetch
 
 HISTSIZE=1000000
 SAVEHIST=1000000
@@ -28,8 +27,8 @@ if command -v pyenv 1>/dev/null 2>&1; then
 fi
 # end python stuff
 
-# eval "$(zoxide init zsh)"
-
+eval "$(zoxide init zsh)"
+eval "$(github-copilot-cli alias -- "$0")"
 # i know what i want while using pip 
 # don't use a lot of completion because it slow down your machine
 # eval "`pip completion --zsh`"           

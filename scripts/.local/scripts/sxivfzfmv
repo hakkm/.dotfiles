@@ -1,0 +1,8 @@
+#!/bin/bash
+
+destination_dir=$(find ~ -type d | grep -v -e "Brave" -e "./git" -e "./github" | fzf)
+
+# Move the file to the selected destination directory
+mv "./$1" "$destination_dir"
+
+notify-send "Moved: $1 to $destination_dir"

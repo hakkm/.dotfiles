@@ -1,0 +1,9 @@
+* Usage 
+  = sign : diff
+  enter: view the file after change
+  :Gdiff : horisontal split diff view
+  :Gvdiff : vertical split diff view
+  :Gwrite : like =git add file=
+  :Gread : remove changes like git reset
+
+

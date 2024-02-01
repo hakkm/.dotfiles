@@ -1,0 +1,10 @@
+plugins/*
+plugins/
+plugins/zsh-autosuggestions
+plugins/zsh-completions
+plugins/zsh-syntax-highlighting
+/plugin/*
+
+# files
+.zcompdump
+.zsh_history

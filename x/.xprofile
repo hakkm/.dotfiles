@@ -1,19 +1,35 @@
-#!/bin/sh
+#!/bin/bash
 
+# export DISPLAY=:0
+export ZDOTDIR=$HOME/.config/zsh
+export VISUAL=nvim
+# export EDITOR="nvim"
+export EDITOR="~/apps/AppImages/nvim.appimage"
+export BROWSER="brave-beta"
+export MANPAGER='nvim +Man!'
+export PAGER='nvim +Man!'
+export OPENER='zathura'
+export TERMINAL='alacritty'
+export MANWIDTH=999
+export VAULT='/home/khabir/docs/VaultsObsidian/'
+export IMAGE_VIEWER='nsxiv'
+export OBSIDIAN="/home/khabir/apps/AppImages/Obsidian-1.4.13.AppImage"
+export OPENAI_KEY="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"
 
+# merge in defaults and keymaps
 
+#####################
 ### Adding to PATH
 #####################
 
 function add_to_path {
-  if [[ ":$PATH:" != *":$1:"* ]]; then
-    export PATH=$PATH:$1
-  fi
+	if [[ ":$PATH:" != *":$1:"* ]]; then
+		export PATH=$PATH:$1
+	fi
 }
 #  adding /home/khabir/.local/bin to path.
 add_to_path /home/khabir/.local/bin
-#  for creating executable files in /home/khabir/bin
-add_to_path /home/khabir/bin
+
 # bat, zathura, sxiv
 add_to_path /usr/bin/bat:/usr/bin/sxiv:/usr/bin/zathura
 # lua
@@ -21,26 +37,9 @@ add_to_path /usr/bin/lua
 
 add_to_path $PYENV_ROOT/bin
 add_to_path /home/khabir/.local/scripts
+add_to_path /home/khabir/apps/rstudio-desktop-bin/pkg/rstudio-desktop-bin/usr/lib/rstudio/
+add_to_path /home/khabir/.config/zsh/zsh-commands
 
-# fix notification last for ever when running notify-send in .xprofile
+alias s='startx'
 
-export ZDOTDIR=$HOME/.config/zsh
-export VISUAL=nvim
-export EDITOR="nvim"
-export BROWSER="brave-beta"
-export MANPAGER='nvim +Man!'
-export PAGER='nvim +Man!'
-export OPENER='zathura'
-export TERMINAL='alacritty'
-export MANWIDTH=999
-
-setbg $HOME/pics/wallpapers &       # set background
-slstatus &
-sxhkd &                         # for keybindings
-# picom &
-safeeyes -e &
-
-# for dwm : Bind the right Alt key to Mod4
-# xmodmap -e "keycode 108 = Super_L"  # reassign Alt_R to Super_L
-# xmodmap -e "remove mod1 = Super_L"  # make sure X keeps it out of the mod1 group
-
+# [ ! $DISPLAY -a $(tty) = "/dev/tty1" ] && startx

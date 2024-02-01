@@ -1,14 +1,14 @@
-local status_ok, lsp = pcall(require, "lsp-zero")
+local status_ok, lsp_zero = pcall(require, "lsp-zero")
 if not status_ok then
   vim.notify("lsp-zero don't work")
   return
 end
 
-lsp.preset('recommended')
+lsp_zero.preset('recommended')
 
-lsp.on_attach(function(bufnr)
-  lsp.default_keymaps({ buffer = bufnr })
-  lsp.buffer_autoformat()
+lsp_zero.on_attach(function(bufnr)
+  lsp_zero.default_keymaps({ buffer = bufnr })
+  lsp_zero.buffer_autoformat()
 
   -- keybindings
   vim.keymap.set({ 'n', 'x' }, 'gF', function()
@@ -17,7 +17,7 @@ lsp.on_attach(function(bufnr)
       timeout_ms = 10000,
     })
   end)
-  vim.keymap.set("n", "gt", vim.lsp.buf.type_definition)
+  -- vim.keymap.set("n", "gt", vim.lsp.buf.type_definition)
 
   -- lsp.format_mapping('gq', {
   --   servers = {
@@ -26,5 +26,25 @@ lsp.on_attach(function(bufnr)
   -- })
 end)
 
-lsp.skip_server_setup({ 'python-lsp-server' })
-lsp.setup()
+local lspconfig = require('lspconfig')
+-- (Optional) Configure lua language server for neovim
+lspconfig.sumneko_lua.setup({
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = { 'vim', 't' },
+      },
+      -- completion = {
+      --   callSnippet = "Replace"
+      -- }
+    }
+  }
+}
+)
+
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.offsetEncoding = { "utf-16" }
+lspconfig.clangd.setup({ capabilities = capabilities })
+
+-- lsp.skip_server_setup({ 'python-lsp-server' })
+lsp_zero.setup()

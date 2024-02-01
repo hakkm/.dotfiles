@@ -58,9 +58,10 @@ nvim_tree.setup {
     side = "left",
     mappings = {
       list = {
-        { key = { "l", "<CR>", "o" }, cb = tree_cb "edit" },
-        { key = "h", cb = tree_cb "close_node" },
-        { key = "v", cb = tree_cb "vsplit" },
+        { key = { "l", "<CR>", "o" },             cb = tree_cb "edit" },
+        { key = "h",                              cb = tree_cb "close_node" },
+        { key = "v",                              cb = tree_cb "vsplit" },
+        { key = "h",                              cb = tree_cb "split" },
         -- BEGIN-DEFAULT-MAPPINGS
         { key = { "<CR>", "o", "<2-LeftMouse>" }, action = "edit" },
         { key = "<C-e>",                          action = "edit_in_place" },
@@ -80,7 +81,7 @@ nvim_tree.setup {
         { key = "H",                              action = "toggle_dotfiles" },
         { key = "U",                              action = "toggle_custom" },
         { key = "R",                              action = "refresh" },
-        { key = "a",                              action = "create" },  --  add a file; leaving a trailing `/` will add a directory
+        { key = "a",                              action = "create" }, --  add a file; leaving a trailing `/` will add a directory
         { key = "d",                              action = "remove" },
         { key = "D",                              action = "trash" },
         { key = "r",                              action = "rename" },

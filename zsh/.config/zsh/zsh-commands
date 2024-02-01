@@ -20,3 +20,51 @@ find /etc -type f | grep -v -e ".git" -e "Makefile" -e "Brave" -e "Virtual" | fz
 sff() {
 find $@ -type f | grep -v -e ".git" -e "Makefile" -e "Brave" -e "Virtual" | fzf --preview "bat --color=always --style=plain {}" | xargs -r nvim
 }
+sf() {
+find $@ -type f | grep -v -e ".git" -e "Makefile" -e "Brave" -e "Virtual" | fzf --preview "bat --color=always --style=plain {}" | xargs -r nvim
+}
+
+# show 256 colors
+color() {
+  x=`tput op`;
+  y=`printf %76s`;
+  for i in {0..256};do
+    o=00$i
+    echo -e ${o:${#o}-3:3} `tput setaf $i
+    tput setab $i`${y// /=}$x
+  done
+
+}
+
+obsidian() {
+    if [ -x "$OBSIDIAN" ]; then
+        "$OBSIDIAN" "$@"
+    else
+        echo "Obsidian executable not found: $OB"
+    fi
+}
+
+mkcd() {
+  mkdir -p "$1" && cd "$1"
+}
+
+start_learning() {
+  mpv ~/vids/learning/HYPER_EFFICIENT_STUDY_WITH_ME.mp4 > /dev/null
+}
+
+
+stl() {
+  mpv ~/vids/learning/HYPER_EFFICIENT_STUDY_WITH_ME.mp4 > /dev/null
+}
+
+kill_safeeyes() {
+  kill -SIGKILL `pgrep -x safeeyes`
+}
+
+# Codi
+# Usage: codi [filetype] [filename]
+codi() {
+  local syntax="${1:-python}"
+  shift
+  nvim -c "Codi $syntax" "$@"
+}

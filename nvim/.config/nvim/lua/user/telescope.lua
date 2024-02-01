@@ -36,7 +36,7 @@ telescope.setup {
         ["<PageUp>"] = actions.results_scrolling_up,
         ["<PageDown>"] = actions.results_scrolling_down,
 
-        ["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
+        -- ["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
         ["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
         ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
         ["<M-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
@@ -91,6 +91,12 @@ telescope.setup {
     -- extension_name = {
     --   extension_config_key = value,
     -- }
+    git_worktree = {},
     -- please take a look at the readme of the extension you want to configure
+    harpoon = {},
   },
 }
+
+
+-- require("telescope").load_extension("git_worktree")
+-- require("telescope").load_extension('harpoon')

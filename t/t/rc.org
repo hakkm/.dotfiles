@@ -108,6 +108,12 @@ more info: see the video =~/vids/rec/merge-folders.mp4=
    Luapad
 ** How to get or set env global variables 
    vim.env.ZDOTDIR
+** Motions
+   =v%= select between containers
+** Reload a config file for a plugin
+   :lazy load plugin-name
+** open a file in vscode 
+   In NvimTree type s
 
 * R 
 ** Install a package
@@ -139,3 +145,6 @@ more info: see the video =~/vids/rec/merge-folders.mp4=
 ** Control Volume
    =0= increase volume
    =9= decrease volume
+
+* Learning Material 
+** use 101 to search for beginner friendly material

@@ -27,15 +27,15 @@ autoload -Uz colors && colors
 
 # Useful Functions
 source "$ZDOTDIR/zsh-functions"
-
-# Normal files to source
+# #
+# # Normal files to source
 zsh_source_file "zsh-exports"
 zsh_source_file "zsh-vim-mode"
-zsh_source_file "zsh-aliases"
+# zsh_source_file "zsh-aliases"
 zsh_source_file "zsh-prompt"
 zsh_source_file "zsh-keybindings"
 zsh_source_file "zsh-commands"
-
+#
 # Plugins
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
 zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
@@ -66,17 +66,6 @@ bindkey '^[[B' history-substring-search-down
 
 # zsh-autosuggestions
 bindkey '^ ' autosuggest-accept
-
-
-alias lll="ls -al"
-
-
-
-# FZF
-# Todo: theses files do not exists
-# source /usr/share/fzf/key-bindings.zsh
-# source /usr/share/fzf/completion.zsh
-export FZF_DEFAULT_COMMAND='rg --hidden -l ""'
 
 # Edit line in vim with ctrl-e:
 autoload edit-command-line; zle -N edit-command-line

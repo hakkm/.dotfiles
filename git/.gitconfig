@@ -14,6 +14,7 @@
 	ll = log --oneline --graph --all
   co = checkout
   br = branch
-  ca = commit -am
+  ac = commit -am
   c = commit -m
   a = add .
+  cb = checkout -b

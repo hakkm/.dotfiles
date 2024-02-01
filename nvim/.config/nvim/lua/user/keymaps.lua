@@ -34,6 +34,7 @@ keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 -- Navigate buffers
 keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprevious<CR>", opts)
+keymap("n", "<C-p>", "<C-^>", opts)
 
 -- Move text up and down
 keymap("n", "<A-j>", "<Esc>:m .+1<CR>==gi", opts)
@@ -41,10 +42,12 @@ keymap("n", "<A-k>", "<Esc>:m .-2<CR>==gi", opts)
 
 -- Insert --
 -- Press jk fast to exit insert mode
--- keymap("i", "jk", "<ESC>", opts)
 keymap("i", "kj", "<ESC>", opts)
 -- ctrl + backspace to delete a word
--- keymap("i", "<C-BS>", "<C-w>", opts) -- don't work
+---- see :help c_BS ==> CTRL-H						*c_<BS>* *c_CTRL-H* *c_BS*
+---- CTRL-H		delete the character before the cursor		*c_CTRL-H*
+---- <BS> = CTRL-H = backspace
+keymap('i', '<C-H>', '<C-w>', opts)
 
 -- Visual --
 -- Stay in indent mode
@@ -62,6 +65,11 @@ keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
 keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
+
+-- Command --
+-- foget to use sudo
+keymap("n", "<leader>W", ":exe 'silent w !sudo tee %' | :e!<CR>", opts)
+keymap("c", "W", ":exe 'silent w !sudo tee %' | :e!", opts)
 
 
 -- Terminal --

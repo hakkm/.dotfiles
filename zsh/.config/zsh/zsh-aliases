@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 ## pacman and yay
 alias i='yay -S'
@@ -10,36 +10,58 @@ alias c='yay -Yc'
 # xev 
 alias xev="xev | awk -F'[ )]+' '/^KeyPress/ { a[NR+2] } NR in a { printf \"%-3s %s\n\", \$5, \$8 }'"
 
+# chmod 
+alias x="chmod +x"
 
 # app images
-alias obsidian="~/dows/Obsidian-1.2.8.AppImage"
+# alias obsidian="~/apps/AppImages/Obsidian-1.4.13.AppImage"
+alias ob="~/apps/AppImages/Obsidian-1.4.13.AppImage"
+alias sxiv=nsxiv
+alias xp="xppen"
 
-alias p="sudo pacman"
-alias ls='ls --color=auto'
-alias j='z'
-alias f='zi'
+alias cat="bat -n --pager less"
+alias zz="z -"
+alias cd="z"
 alias vi='vim'
+alias nv="$EDITOR"
+alias nvn='~/apps/AppImages/nvim.appimage'
+alias pnv="XDG_CONFIG_HOME=~/.config/$EDITOR.fresh XDG_DATA_HOME=~/.local/share/nvim.fresh XDG_STATE_HOME=~/.local/state/nvim.fresh nvim"
+alias au="$EDITOR ~/.config/$EDITOR/lua/user/autocommands.lua"
+alias zat="zathura"
+
 alias zsh-update-plugins="find "$ZDOTDIR/plugins" -type d -exec test -e '{}/.git' ';' -print0 | xargs -I {} -0 git -C {} pull -q"
 
 # ls 
-alias ll="ls -l -h"
-alias la "ls -l -h -a"
+alias ls='ls --color=auto'
+alias ll="exa -l"
+alias lll="exa -l -a"
+alias tree="exa --tree"
 
 # config 
-alias nvimrc='nvim ~/.config/nvim/'
-alias zshrc='nvim ~/.config/zsh/'
-alias rangerrc='nvim ~/.config/ranger/rc.conf'
-alias lfrc='nvim ~/.config/lf/lfrc'
+alias nvrc="$EDITOR ~/.config/nvim/init.lua"
+alias zshrc="$EDITOR ~/.config/zsh/"
+alias rangerrc="$EDITOR ~/.config/ranger/rc.conf"
+alias lfrc="$EDITOR ~/.config/lf/lfrc"
 alias dwmfrc='cd ~/.config/dwm-flexipatch/'
 alias dwmrc='cd ~/.config/dwm/'
 alias dmrc='cd ~/.config/dmenu/'
-alias zathurarc='nvim ~/.config/zathura/zathurarc'
-alias alacrittyrc='nvim ~/.config/alacritty/alacritty.yml'
-alias slrc='cd ~/.config/slstatus/ && nvim .'
-alias sxrc='nvim ~/.config/sxhkd/sxhkdrc'
-alias aliasrc='nvim ~/.config/zsh/zsh-aliases'
-alias sxivrc="nvim ~/.config/sxiv/exec/key-handler"
-alias picomrc="nvim ~/.config/picom.conf"
+alias zathurarc="$EDITOR ~/.config/zathura/zathurarc"
+alias zathrc="$EDITOR ~/.config/zathura/zathurarc"
+alias zarc="$EDITOR ~/.config/zathura/zathurarc"
+alias alacrittyrc="$EDITOR ~/.config/alacritty/alacritty.yml"
+alias slrc='cd ~/.config/slstatus/ && $EDITOR .'
+alias sxrc="$EDITOR ~/.config/sxhkd/sxhkdrc"
+alias aliasrc="$EDITOR ~/.config/zsh/zsh-aliases"
+alias alrc="$EDITOR ~/.config/zsh/zsh-aliases"
+alias al="$EDITOR ~/.config/zsh/zsh-aliases"
+alias sxivrc="$EDITOR ~/.config/nsxiv/exec/key-handler"
+alias nsxivrc="$EDITOR ~/.config/nsxiv/exec/key-handler"
+alias picomrc="$EDITOR ~/.config/picom.conf"
+alias tmuxrc="$EDITOR ~/.tmux.conf"
+alias xres="$EDITOR ~/.Xresources"
+alias cmrc="$EDITOR ~/.config/zsh/zsh-commands"
+
+
 ## scripts
 # alias sc='cd ~/.local/scripts'   # use sc as a fzf
 
@@ -72,15 +94,19 @@ alias brave='brave-beta'
 # learning 
 alias lnx='$BROWSER https://www.netacad.com/portal/learning'
 alias nt='$BROWSER "https://skillsforall.com/launch?id=f393c38f-b410-4d2b-8275-70e144273519&tab=curriculum&view=79932ede-7bba-57ef-a312-ac4d72c37c84"'
+alias drive='$BROWSER https://drive.google.com/drive/my-drive'
+alias email='$BROWSER https://mail.google.com/mail/u/0'
+alias swm='$BROWSER https://www.youtube.com/watch?v=382OExOIipQ&t=3354s'
 
 # suspend or sleep the computer
 alias go-sleep='systemctl suspend -i'
 
-#	for neovim 
-alias nv='nvim'
 
-# convert from anything to pdf
-alias topdf="soffice --headless --convert-to pdf "
+# co$EDITORert from anything to pdf
+alias topdf="soffice --headless --co$EDITORert-to pdf "
 
 # for shutdown now
 alias sn="shutdown now"
+
+# xppen config app
+alias xppen="~/apps/xppen_tablet/XPPenLinux3.4.6-230714/App/usr/lib/pentablet/PenTablet.sh"

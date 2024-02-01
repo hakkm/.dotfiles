@@ -36,7 +36,7 @@ local setup = {
   icons = {
     breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
     separator = "➜", -- symbol used between a key and it's label
-    group = "+",      -- symbol prepended to a group
+    group = "+", -- symbol prepended to a group
   },
   popup_mappings = {
     scroll_down = "<c-d>", -- binding to scroll down inside the popup
@@ -79,23 +79,34 @@ local opts = {
 }
 
 local mappings = {
-  ["a"] = { "<cmd>Alpha<cr>", "Alpha" },
-  ["b"] = {
-    "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
-    "Buffers",
-  },
+  -- ["a"] = { "<cmd>Alpha<cr>", "Alpha" },
+  -- ["b"] = {
+  --   "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
+  --   "Buffers",
+  -- },
+  ["b"] = { "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", "Buffers" },
   ["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
   ["w"] = { "<cmd>w!<CR>", "Save" },
   ["q"] = { "<cmd>q!<CR>", "Quit" },
-  ["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
-  ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
+  -- ["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
   ["f"] = {
     "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>",
     "Find files",
   },
   ["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
   ["P"] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
-  ["m"] = { "<cmd>MarkdownPreview<cr>", "Markdown preview" },
+  ["M"] = { "<cmd>MarkdownPreview<cr>", "Markdown preview" },
+
+  -- icon picker
+  -- ["i"] = { "<cmd>IconPickerInsert<cr>", "Icon Picker" },
+  -- ["y"] = { "<cmd>IconPickerYank<cr>", "Icon Picker Yank" },
+
+  h = {
+    name = "Harpoon/high",
+    r = { "<cmd>nohlsearch<cr>", "No Highlight" },
+    h = { "<cmd>Telescope harpoon marks<cr>", "Harpoon" },
+    a = { "<cmd>lua require('harpoon.mark').add_file()<cr>", "Add File" },
+  },
 
   p = {
     name = "Packer",
@@ -108,6 +119,7 @@ local mappings = {
 
   g = {
     name = "Git",
+    f = { ":Git<CR>", "Fugitive" },
     g = { "<cmd>lua _LAZYGIT_TOGGLE()<CR>", "Lazygit" },
     j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
     k = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk" },
@@ -132,6 +144,11 @@ local mappings = {
   l = {
     name = "LSP",
     a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
+    c = {
+      name = "Copilot",
+      d = { "<cmd>Copilot disable<cr>", "Disable copilot" },
+      e = { "<cmd>Copilot enable<cr>", "Enable copilot" },
+    },
     d = {
       "<cmd>Telescope diagnostics bufnr=0<cr>",
       "Document Diagnostics",
@@ -159,17 +176,21 @@ local mappings = {
       "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
       "Workspace Symbols",
     },
+    t = { ":LspStop<cr>", "Stop/Terminate" }
   },
   s = {
-    name = "Search",
+    name = "Search/Sessions",
     b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
     c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
     h = { "<cmd>Telescope help_tags<cr>", "Find Help" },
     M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
-    r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
+    o = { "<cmd>Telescope oldfiles<cr>", "Open Recent/Old Files" }, -- old just for speed of thought
     R = { "<cmd>Telescope registers<cr>", "Registers" },
     k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
     C = { "<cmd>Telescope commands<cr>", "Commands" },
+    s = { ":SessionSave<CR>", "Save Session" },
+    r = { ":SessionRestore<CR>", "Restore Session" },
+
   },
 
   t = {
@@ -187,6 +208,24 @@ local mappings = {
     r = { ":w <CR>:VimtexCompile<CR>", "Run / Compile" },
     c = { ":VimtexClean<CR>", "Clean" },
     v = { ":VimtexView<CR>", "View" },
+  },
+  d = {
+    name = "DAP",
+    c = { ":DapContinue<CR>", "Continue" },
+    b = { ":DapToggleBreakpoint<CR>", "Toggle Breakpoint" },
+    r = { ":lua require('dapui').open({reset = true})<CR>", "Reset DAP UI view" },
+    i = { ":DapStepIn<CR>", "Step In" },
+    o = { ":DapStepOut<CR>", "Step Out" },
+    s = { ":lua require'dap.ui.variables'.scopes()<CR>", "Scopes" },
+    v = { ":lua require'dap.ui.variables'.visual_hover()<CR>", "Visual Hover" },
+    e = { ":lua require'dap.ui.expressions'.eval()<CR>", "Eval" },
+    h = { ":lua require'dap.ui.widgets'.hover()<CR>", "Hover" },
+    t = { ":DapTerminate<CR>", "Terminate" },
+  },
+  o = {
+    name = "Obsidian",
+    d = { ":ObsidianToday<CR>", "Today" },
+    n = { ":ObsidianNew<CR>", "New Note" }
   }
 }
 

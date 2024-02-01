@@ -1,3 +1,5 @@
+#!/bin/lcd
+
 set statusbar-h-padding 0
 set statusbar-v-padding 0
 set page-padding 1
@@ -29,9 +31,26 @@ set statusbar-home-tilde "false"
 # set recolor   
 set recolor-lightcolor \#2b292e  #\#222222
 # set recolor-keephue
-set default-bg \#1f2227
+set default-bg \#1e1e1e
 set default-fg \#7f7e7e
 #set recolor-darkcolor \#1f2227
+# modify the bg color of status bar to red
+set statusbar-bg \#1e1e1e
+set statusbar-fg \#fdfdfd
+
+# in the status bar remove the absolute path just the name of the pdf
+set statusbar-basename "true"
+
+# remove the notification bar at the bottom of copying something to selection-clipboard
+
+set selection-clipboard clipboard
+
+# change the color of the notification bar
+set notification-bg \#2e2e2e
+set notification-fg \#fdfdfd
+# change text of nitification bar to copied: ...
+set notification-text "Copied: %s"
+
 
 # map
 map ] zoom in
@@ -41,3 +60,7 @@ map b toggle_statusbar
 
 map <C-l> feedkeys ":blist <Tab>"
 map <C-m> feedkeys ":bmark " 
+
+
+# disabling sandbox for opening links
+set sandbox none

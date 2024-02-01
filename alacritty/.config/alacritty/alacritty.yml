@@ -1,34 +1,42 @@
 # Colors (One Darker)
 # Note I am using alacritty-ligatures until ligatures make it upstream
+
+draw_bold_text_with_bright_colors: true
 colors:
   # Default colors
   primary:
-    background: "#232731"
-    # background: "#1f2227"
-    foreground: "#abb2bf"
+    background: "#1e1e1e"
+    # foreground: "#abb2bf"
+    foreground: "#d7d7d7"
 
   # Normal colors
   # Nord
   normal:
     black: "#4C566A"
-    red: "#bf616a"
-    green: "#A3BE8C"
+    red: "#f14c4c"
+    green: "#23d18b"
     yellow: "#D7BA7D"
-    blue: "#5e81ac"
+    blue: "#007acc"
     magenta: "#B48EAD"
-    cyan: "#88c0d0"
+    cyan: "#11a8cd"
     white: "#abb2bf"
 
-  # Bright colors
+  # Bright colors for highlight
   bright:
     black: "#4C566A"
-    red: "#bf616a"
-    green: "#A3BE8C"
+    red: "#cd3131"
+    green: "#0dbc79"
     yellow: "#D7BA7D"
-    blue: "#5e81ac"
+    blue: "#007acc"
     magenta: "#B48EAD"
-    cyan: "#88c0d0"
+    cyan: "#11a8cd"
     white: "#abb2bf"
+    # green: "#A3BE8C"
+    # yellow: "#ffff00"
+    # blue: "#5e81ac"
+    # magenta: "#B48EAD"
+    # cyan: "#88c0d0"
+    # white: "#abb2bf"
 
   cursor:
     text: "#3B4252"
@@ -70,13 +78,18 @@ font:
     y: 0
 window:
   opacity: 1
+  dimensions:
+    columns: 92
+    lines: 22 
 
 ##################
 ##  key_bindings
 ##################
 key_bindings:
   - { key: V, mods: Control|Shift, action: Paste }
+  - { key: P, mods: Control|Shift, action: Paste }
   - { key: C, mods: Control|Shift, action: Copy }
+  - { key: Y, mods: Control|Shift, action: Copy }
   - { key: Key0, mods: Control, action: ResetFontSize }
   - { key: Equals, mods: Control, action: IncreaseFontSize }
   - { key: Minus, mods: Control, action: DecreaseFontSize }

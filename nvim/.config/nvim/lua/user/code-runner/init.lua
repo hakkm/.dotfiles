@@ -40,17 +40,21 @@ code_runner.setup {
   filetype = {
     javascript = "node",
     java = "cd $dir && javac $fileName && java $fileNameWithoutExt",
-    c = 'cd $dir ; mkdir -p bin && gcc $fileName -o ./bin/$fileNameWithoutExt -lm && echo  && ./bin/$fileNameWithoutExt && echo " "',
-    cpp = "cd $dir && g++ $fileName -o $fileNameWithoutExt && $dir/$fileNameWithoutExt",
+    c =
+    'cd $dir ; mkdir -p bin && gcc $fileName -o ./bin/$fileNameWithoutExt -lm && echo  && ./bin/$fileNameWithoutExt && echo " "',
+    cpp =
+    "cd $dir ; mkdir -p bin && g++ -g $fileName -o ./bin/$fileNameWithoutExt && echo && $dir/bin/$fileNameWithoutExt ; echo",
     python = "echo && python3 -u",
     sh = "bash",
     rust = "cd $dir && rustc $fileName && $dir$fileNameWithoutExt",
+    R = "R --no-save --quiet  -f", --slave: no prompt
+    r = "R --no-save --quiet  -f", --slave: no prompt
   },
-  project_path = "", -- No default path defined
+  project_path = "",               -- No default path defined
   project = {},
 }
 
--- keymaps -- 
+-- keymaps --
 local opts = { noremap = true, silent = false }
 local keymap = vim.keymap.set
 -- keymap('n', '<leader>r', ':RunCode<CR>', opts )

@@ -1,4 +1,4 @@
-#+title: Emacs Configuration
++title: Emacs Configuration
 #+PROPERTY: header-args:emacs-lisp :tangle /home/khabir/.emacs
 
 * Basic UI 
@@ -27,82 +27,82 @@
 
 * Package and Package Manager
   #+BEGIN_SRC emacs-lisp
-  (require 'package)
-  (setq package-archives '(("melpa" . "https://melpa.org/packages/")
-                           ("org" . "https://orgmode.org/elpa/")
-                           ("elpa" . "https://elpa.gnu.org/packages/")))
-  (package-initialize)
-  (unless package-archive-contents
-    (package-refresh-contents))
-  (unless (package-installed-p 'use-package)
-    (package-install 'use-package))
-  (require 'use-package)
-  (setq use-package-always-ensure t)
-  #+END_SRC
+  # (require 'package)
+  # (setq package-archives '(("melpa" . "https://melpa.org/packages/")
+  #                          ("org" . "https://orgmode.org/elpa/")
+  #                          ("elpa" . "https://elpa.gnu.org/packages/")))
+  # (package-initialize)
+  # (unless package-archive-contents
+  #   (package-refresh-contents))
+  # (unless (package-installed-p 'use-package)
+  #   (package-install 'use-package))
+  # (require 'use-package)
+  # (setq use-package-always-ensure t)
+  # #+END_SRC
 * General package
 #+begin_src emacs-lisp
-  (use-package general
-    :after evil
-    :config
-    (general-create-definer ahk/leader-keys
-      :keymaps  '(normal insert visual emacs)
-      :prefix "SPC"	
-      :global-prefix "C-SPC")						
+#   (use-package general
+#     :after evil
+#     :config
+#     (general-create-definer ahk/leader-keys
+#       :keymaps  '(normal insert visual emacs)
+#       :prefix "SPC"	
+#       :global-prefix "C-SPC")						
 
-    (ahk/leader-keys
-      "t"  '(:ignore t  :which-key "toggles")
-      "tt" '(counsel-load-theme :which-key "choose theme")
-      "ts" '(hydra-text-scale/body :which-key "scale text")
-      "n"  '(:ignore r  :which-key "Roam")
-      "nl" '(org-roam-buffer-toggle :which-key "buffer toggle")
-      "nf" '(org-roam-node-find :which-key "node find")
-      "ni" '(org-roam-node-insert :which-key "node insert")
-      "nd" '(org-roam-dailies-map :which-key "node insert")
-      "p"  '(projectile-command-map :which-key "projectile")
-      "b"  '(persp-switch-to-buffer* :which-key "buffer switch")
-      "r"  '(quickrun-shell :which-key "run")
-      "e"  '(treemacs :which-key "treemacs")
-      "w"  '(save-buffer :which-key "write")
-      "q"  '(kill-buffer-and-window :which-key "quit")
-      "c"  '(:ignore t :which-key "commenting")		 
-      "cd" '(comment-dwim :which-key "document")
-      "s"  '(flyspell-auto-correct-word :which-key "spell")
-      "m"  '(mpv-insert-playback-position :which-key "mpv playback")))
-#+end_src
+#     (ahk/leader-keys
+#       "t"  '(:ignore t  :which-key "toggles")
+#       "tt" '(counsel-load-theme :which-key "choose theme")
+#       "ts" '(hydra-text-scale/body :which-key "scale text")
+#       "n"  '(:ignore r  :which-key "Roam")
+#       "nl" '(org-roam-buffer-toggle :which-key "buffer toggle")
+#       "nf" '(org-roam-node-find :which-key "node find")
+#       "ni" '(org-roam-node-insert :which-key "node insert")
+#       "nd" '(org-roam-dailies-map :which-key "node insert")
+#       "p"  '(projectile-command-map :which-key "projectile")
+#       "b"  '(persp-switch-to-buffer* :which-key "buffer switch")
+#       "r"  '(quickrun-shell :which-key "run")
+#       "e"  '(treemacs :which-key "treemacs")
+#       "w"  '(save-buffer :which-key "write")
+#       "q"  '(kill-buffer-and-window :which-key "quit")
+#       "c"  '(:ignore t :which-key "commenting")		 
+#       "cd" '(comment-dwim :which-key "document")
+#       "s"  '(flyspell-auto-correct-word :which-key "spell")
+#       "m"  '(mpv-insert-playback-position :which-key "mpv playback")))
+# #+end_src
 
 * General key-bindings
 #+begin_src emacs-lisp
-  (global-set-key (kbd "C-h v") 'helpful-variable)
-  (global-set-key (kbd "C-h f") 'helpful-function)
+  ;; (global-set-key (kbd "C-h v") 'helpful-variable)
+  ;; (global-set-key (kbd "C-h f") 'helpful-function)
 #+end_src
 
 * Which Key
 #+begin_src emacs-lisp
- (use-package which-key
-    :defer 0
-    :diminish which-key-mode
-    :config
-    (which-key-mode)
-    (setq which-key-idle-delay 1))
-#+end_src
+#  (use-package which-key
+#     :defer 0
+#     :diminish which-key-mode
+#     :config
+#     (which-key-mode)
+#     (setq which-key-idle-delay 1))
+# #+end_src
 * Delimiters
 #+begin_src emacs-lisp
-  (use-package rainbow-delimiters
-    :hook (prog-mode . rainbow-delimiters-mode))
-#+end_src
+#   (use-package rainbow-delimiters
+#     :hook (prog-mode . rainbow-delimiters-mode))
+# #+end_src
 * Helpful
 #+begin_src emacs-lisp
-  (use-package helpful
-    :ensure t
-    :custom
-    (Counsel-Describe-Function-Function #'Helpful-Callable)
-    (Counsel-Describe-Variable-Function #'Helpful-Variable)
-    :bind
-    ([Remap Describe-Function] . Helpful-Callable)
-    ([Remap Describe-Command] . Helpful-Command)
-    ([remap describe-variable] . counsel-describe-variable)
-    ([remap describe-key] . helpful-key))
-#+end_src
+#   (use-package helpful
+#     :ensure t
+#     :custom
+#     (Counsel-Describe-Function-Function #'Helpful-Callable)
+#     (Counsel-Describe-Variable-Function #'Helpful-Variable)
+#     :bind
+#     ([Remap Describe-Function] . Helpful-Callable)
+#     ([Remap Describe-Command] . Helpful-Command)
+#     ([remap describe-variable] . counsel-describe-variable)
+#     ([remap describe-key] . helpful-key))
+# #+end_src
 
 * Appearance
   #+BEGIN_SRC emacs-lisp
@@ -226,16 +226,16 @@
 
 * Counsel Projectile
 #+begin_src emacs-lisp
-  (use-package counsel-projectile
-    :config (counsel-projectile-mode))
-#+end_src
+#   (use-package counsel-projectile
+#     :config (counsel-projectile-mode))
+# #+end_src
 
 * Magit
 #+begin_src emacs-lisp
-  (use-package magit
-    :custom
-    (magit-diepslay-buffer-function #'magit-dispaly-buffer-smae-window-except-diff-v1))
-#+end_src
+   ;;(use-package magit
+   ;;  :custom
+    ;; (magit-diepslay-buffer-function #'magit-dispaly-buffer-smae-window-except-diff-v1))
+ #+end_src
 
 * Org
 ** Org Mode Basics
@@ -472,7 +472,7 @@ To disable =C-M-i= binding for =completion-at-point=
 #+end_src
 * MPV
 #+begin_src emacs-lisp
-  (use-package mpv)
+  ;; (use-package mpv)
 #+end_src
 
 * kj normal mode
@@ -490,14 +490,14 @@ To disable =C-M-i= binding for =completion-at-point=
 
 * Links mpv zathura
 #+begin_src emacs-lisp
-(defun org-mpv-open (path)
-  (start-process "mpv" nil "mpv" path))
-(org-add-link-type "mpv" 'org-mpv-open)
+# (defun org-mpv-open (path)
+#   (start-process "mpv" nil "mpv" path))
+# (org-add-link-type "mpv" 'org-mpv-open)
 
-(defun org-zathura-open (path)
-	(start-process "zathura" nil "zathura" path))
-(org-add-link-type "doc" 'org-zathura-open)
-#+end_src
+# (defun org-zathura-open (path)
+# 	(start-process "zathura" nil "zathura" path))
+# (org-add-link-type "doc" 'org-zathura-open)
+# #+end_src
 
 * Dev
 Video:[[mpv:/home/khabir/vids/emacs/Emacs_From_Scratch_#8-Build_Your_Own_IDE_with_lsp-mode.webm][JS IDE]]
@@ -743,12 +743,12 @@ We use the [[https://github.com/emacscollective/no-littering/blob/master/no-litt
     ;; reliably, set `user-emacs-directory` before loading no-littering!
     ;(setq user-emacs-directory "~/.cache/emacs")
 
-    (use-package no-littering)
+    ;; (use-package no-littering)
 
     ;; no-littering doesn't set this by default so we must place
     ;; auto save files in the same path as it uses for sessions
-    (setq auto-save-file-name-transforms
-      `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
+    ;; (setq auto-save-file-name-transforms
+    ;;   `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
 
 #+end_src
 You can turn off backups:
@@ -766,51 +766,51 @@ What if some nodes have the same name (they are different because of the id): us
 with =M-x org-roam-alias-add= command. but don't get yourself to this case
 
 #+begin_src emacs-lisp
-(use-package org-roam
-  :ensure t
-  :init
-  (setq org-roam-v2-ack t)
-  :custom
-  (org-roam-directory "~/docs/roam-notes")
-  (org-roam-completion-everywhere t)
-  (org-roam-dailies-capture-templates
-    '(("d" "default" entry "* %<%I:%M %p>: %?"
-       :if-new (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n"))))
-  :bind (("C-c n l" . org-roam-buffer-toggle)
-         ("C-c n f" . org-roam-node-find)
-         ("C-c n i" . org-roam-node-insert)
-         :map org-mode-map
-         ("C-M-i" . completion-at-point)
-         :map org-roam-dailies-map
-         ("Y" . org-roam-dailies-capture-yesterday)
-         ("T" . org-roam-dailies-capture-tomorrow))
-  :bind-keymap
-  ("C-c n d" . org-roam-dailies-map)
-  :config
-  (require 'org-roam-dailies) ;; Ensure the keymap is available
-  (org-roam-db-autosync-mode))
+# (use-package org-roam
+#   :ensure t
+#   :init
+#   (setq org-roam-v2-ack t)
+#   :custom
+#   (org-roam-directory "~/docs/roam-notes")
+#   (org-roam-completion-everywhere t)
+#   (org-roam-dailies-capture-templates
+#     '(("d" "default" entry "* %<%I:%M %p>: %?"
+#        :if-new (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n"))))
+#   :bind (("C-c n l" . org-roam-buffer-toggle)
+#          ("C-c n f" . org-roam-node-find)
+#          ("C-c n i" . org-roam-node-insert)
+#          :map org-mode-map
+#          ("C-M-i" . completion-at-point)
+#          :map org-roam-dailies-map
+#          ("Y" . org-roam-dailies-capture-yesterday)
+#          ("T" . org-roam-dailies-capture-tomorrow))
+#   :bind-keymap
+#   ("C-c n d" . org-roam-dailies-map)
+#   :config
+#   (require 'org-roam-dailies) ;; Ensure the keymap is available
+#   (org-roam-db-autosync-mode))
 
-  (use-package org-roam
-    :ensure t
-    :init
-    (setq org-roam-v2-ack t)
-    :custom
-    (org-roam-completion-everywhere t)
-    :bind (("C-c n l" . org-roam-buffer-toggle)
-           ("C-c n f" . org-roam-node-find)
-           ("C-c n i" . org-roam-node-insert)
-           :map org-mode-map
-           ("C-M-i"    . completion-at-point)
-          :map org-roam-dailies-map
-          ("Y" . org-roam-dailies-capture-yesterday)
-          ("T" . org-roam-dailies-capture-tomorrow))
-    :bind-keymap
-    ("C-c n d" . org-roam-dailies-map)
-    :config
-    (require 'org-roam-dailies) ;; Ensure the keymap is available
-    (org-roam-db-autosync-mode))
+#   (use-package org-roam
+#     :ensure t
+#     :init
+#     (setq org-roam-v2-ack t)
+#     :custom
+#     (org-roam-completion-everywhere t)
+#     :bind (("C-c n l" . org-roam-buffer-toggle)
+#            ("C-c n f" . org-roam-node-find)
+#            ("C-c n i" . org-roam-node-insert)
+#            :map org-mode-map
+#            ("C-M-i"    . completion-at-point)
+#           :map org-roam-dailies-map
+#           ("Y" . org-roam-dailies-capture-yesterday)
+#           ("T" . org-roam-dailies-capture-tomorrow))
+#     :bind-keymap
+#     ("C-c n d" . org-roam-dailies-map)
+#     :config
+#     (require 'org-roam-dailies) ;; Ensure the keymap is available
+#     (org-roam-db-autosync-mode))
 
-  #+end_src
+#   #+end_src
 * Auto Pairs 
 #+begin_src emacs-lisp :result output
 (add-hook 'prog-mode-hook 'electronic-pair-mode)
@@ -922,15 +922,15 @@ Dired is a built-in file manager for Emacs that does some pretty amazing things!
 system
 then add this propriety to org mode =#+LANGUAGE: ar=
 #+begin_src emacs-lisp :results output
-(defun set-bidi-env ()
-  "interactive"
-  (setq bidi-paragraph-direction 'nil))
-(add-hook 'org-mode-hook 'set-bidi-env)
-#+end_src
+# (defun set-bidi-env ()
+#   "interactive"
+#   (setq bidi-paragraph-direction 'nil))
+# (add-hook 'org-mode-hook 'set-bidi-env)
+# #+end_src
 
 * Terminal
 #+begin_src emacs-lisp :results output
-(use-package vterm)
+  ;; (use-package vterm)
 #+end_src
 
 * Window Management
@@ -949,4 +949,15 @@ The =persp-switch= command (=C-x x s=) will prompt you for the name of a perspec
 #+begin_src emacs-lisp
   (set-face-attribute 'default nil :family "monospace" :height 130)
 #+end_src
+* Excalidraw
+#+begin_src emacs-lisp
+# (use-package org-excalidraw
+#   :straight (:type git :host github :repo "wdavew/org-excalidraw")
+#   :config
+#   (org-excalidraw-directory "~/path_to_store_excalidraw_files")
+# )
+# #+end_src
 
+Note:
+I disabled some plugins to speed up starting time, because i want to use just for org
+mode it's not a great experience in nvim

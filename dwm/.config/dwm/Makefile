@@ -26,6 +26,9 @@ dwm: ${OBJ}
 	${CC} -o $@ ${OBJ} ${LDFLAGS}
 
 clean:
+	rm -f config.def.h.*
+	rm -f dwm.c.*
+	rm -f config.h
 	rm -f dwm ${OBJ} dwm-${VERSION}.tar.gz
 
 dist: clean
@@ -37,6 +40,7 @@ dist: clean
 	rm -rf dwm-${VERSION}
 
 install: all
+	rm -f config.h
 	mkdir -p ${DESTDIR}${PREFIX}/bin
 	cp -f dwm ${DESTDIR}${PREFIX}/bin
 	chmod 755 ${DESTDIR}${PREFIX}/bin/dwm
