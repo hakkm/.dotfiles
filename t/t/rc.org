@@ -148,3 +148,10 @@ more info: see the video =~/vids/rec/merge-folders.mp4=
 
 * Learning Material 
 ** use 101 to search for beginner friendly material
+
+* Xampp
+  To start, stop or restart XAMPP simply call the command
+
+    sudo xampp {start, stop, restart}
+
+  Alternatively you can use the `xampp` systemd service.
