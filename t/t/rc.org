@@ -83,7 +83,7 @@ more info: see the video =~/vids/rec/merge-folders.mp4=
 * editing on screen
   gromix-mpx
 
-* Vim 
+* Vim / Nvim
 ** Git 
 *** Lazygit 
 **** checkout a branch
@@ -114,6 +114,8 @@ more info: see the video =~/vids/rec/merge-folders.mp4=
    :lazy load plugin-name
 ** open a file in vscode 
    In NvimTree type s
+** symbols at right 
+   :SymbolsOutilene
 
 * R 
 ** Install a package
@@ -155,3 +157,11 @@ more info: see the video =~/vids/rec/merge-folders.mp4=
     sudo xampp {start, stop, restart}
 
   Alternatively you can use the `xampp` systemd service.
+
+* Nice way of commenting in lua 
+  --------------------------------------------------------------
+  -- Language Server Protocol (LSP):
+
+* php 
+** start server
+   php -S localhost:8000
