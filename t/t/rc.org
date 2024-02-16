@@ -61,9 +61,6 @@ sudo fsck /dev/sdxX
 * Create a windows bootable USB
 =sudo woeusb --device windows.iso /dev/sdX=
 
-* Rename in sxiv
-=C-x C-x=
-
 * SXIV
 ** Rename in sxiv
  =C-x C-x=
