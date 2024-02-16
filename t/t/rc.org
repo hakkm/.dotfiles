@@ -169,3 +169,10 @@ more info: see the video =~/vids/rec/merge-folders.mp4=
 * php 
 ** start server
    php -S localhost:8000
+** Cross site scripting
+** why we use urlencode() for urls
+   head over the rps project and see the code
+   try: username = hakim/pass
+   then: the slash will be placed in the url and the url will be broken
+   then: use urlencode() to fix the problem => it will be hakim%2Fpass
+   then: use urldecode() to decode the url
