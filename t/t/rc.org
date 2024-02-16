@@ -64,6 +64,13 @@ sudo fsck /dev/sdxX
 * Rename in sxiv
 =C-x C-x=
 
+* SXIV
+** Rename in sxiv
+ =C-x C-x=
+** Open with another program
+ =C-x C-a=
+ 
+ 
 * ps command 
 `ps f` show tree
 
