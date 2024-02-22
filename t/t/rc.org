@@ -181,3 +181,9 @@ more info: see the video =~/vids/rec/merge-folders.mp4=
 
 * Projector
 =arandr= command
+
+* Symfony 
+** start server 
+   =symfony server:start=
+** symfony conpletions 
+   =source symfony-completion=
