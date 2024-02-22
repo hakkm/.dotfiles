@@ -120,6 +120,8 @@ more info: see the video =~/vids/rec/merge-folders.mp4=
    In NvimTree type s
 ** symbols at right 
    :SymbolsOutilene
+** Add new snippet 
+   if new language add it to package.json then add ....
 
 * R 
 ** Install a package
